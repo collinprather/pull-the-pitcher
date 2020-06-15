@@ -1,10 +1,9 @@
 {
-  "Notebook": {
-    "Export to modules": "/export",
-    "Convert to html": "/export2html",
-    "Show doc": "/showdoc",
-    "Test functions": "/test",
-    "Core functions": "/core",
-    "Command line functions": "/cli"
+  "pull_the_pitcher": {
+    "Overview": "/",
+    "Data Acquisition": "/data_acquisition",
+    "Data Processing": "/data_processing",
+    "Data Pipeline": "/data_pipeline",
+    "Metrics": "/metrics"
   }
 }

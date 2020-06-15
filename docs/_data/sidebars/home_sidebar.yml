@@ -7,24 +7,21 @@ entries:
 - folders:
   - folderitems:
     - output: web,pdf
-      title: Export to modules
-      url: /export.html
+      title: Overview
+      url: /
     - output: web,pdf
-      title: Convert to html
-      url: /export2html.html
+      title: Data Acquisition
+      url: /data_acquisition
     - output: web,pdf
-      title: Show doc
-      url: /showdoc.html
+      title: Data Processing
+      url: /data_processing
     - output: web,pdf
-      title: Test functions
-      url: /test.html
+      title: Data Pipeline
+      url: /data_pipeline
     - output: web,pdf
-      title: Core functions
-      url: /core.html
-    - output: web,pdf
-      title: Command line functions
-      url: /cli.html
+      title: Metrics
+      url: /metrics
     output: web
-    title: Notebook
+    title: pull_the_pitcher
   output: web
   title: Sidebar
