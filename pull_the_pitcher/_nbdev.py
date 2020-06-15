@@ -35,7 +35,7 @@ modules = ["data/acquisition.py",
            "data/pipeline.py",
            "metrics.py"]
 
-doc_url = "https://collinprather.github.io/pull_the_pitcher/"
+doc_url = "https://collinprather.github.io/pull-the-pitcher/"
 
 git_url = "https://github.com/collinprather/pull_the_pitcher/tree/master/"
 
