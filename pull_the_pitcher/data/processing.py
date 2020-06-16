@@ -7,7 +7,6 @@ __all__ = ['postouts', 'outs_per_inning', 'batters_faced', 'get_games_pitchers_y
 import pandas as pd
 import sqlite3
 import numpy as np
-from .acquisition import query_db
 
 # Cell
 
@@ -67,11 +66,11 @@ def batters_faced(at_bats: pd.Series):
 
 # Cell
 
-def get_games_pitchers_years(df: pd.DataFrame, verbose: bool):
+def get_games_pitchers_years(df: pd.DataFrame, verbose: bool=True):
     """
     Filter out openers to get all game-pitcher combinations that qualify
     """
-    # get unique game ids from regular season games w/ AL starting pitchers
+    # get unique game ids from regular season games in AL
     games = np.sort(df.loc[(df["game_type"]=="R"), "game_pk"].unique())
     if verbose:
         print(f"In this dataset, there are {len(games)} total games.")
@@ -117,27 +116,34 @@ def get_games_pitchers_years(df: pd.DataFrame, verbose: bool):
 def preliminary_clean(df: pd.DataFrame, g: int, p: int):
     """
     Before aggregating, perform a preliminary cleaning of dataset
+
+    * inputs:
+        - `df`: `pd.DataFrame`, DataFrame of pitch-level data from eligible game-pitcher combos
+        - `g`: `int`, unique game id
+        - `p`: `int`, unique pitcher id
+
+    * output:
+        - `df`: `pd.DataFrame`, cleaned DataFrame
     """
-    temp = df.loc[(df["game_pk"]==g) & (df["pitcher"]==p)].sort_values("at_bat_number", ascending=True)
+    df = df.loc[(df["game_pk"]==g) & (df["pitcher"]==p)].sort_values("at_bat_number", ascending=True)
 
     # adding postouts as a column
-    temp = postouts(temp)
+    df = postouts(df)
 
     # filling missing events with empty string so can aggregate easily
-    temp["events"] = temp["events"].fillna("")
+    df["events"] = df["events"].fillna("")
 
     # post_bat_score is not actually score after at-bat, needs to be lagged
-    temp["post_bat_score"] = temp["post_bat_score"].shift(-1).fillna(method="ffill")
+    df["post_bat_score"] = df["post_bat_score"].shift(-1).fillna(method="ffill")
 
     # post runners on (need to lag -> this info is known in between at-bats)
-    temp["post_on_1b"] = temp["on_1b"].fillna(0).apply(lambda x: 1 if x>0 else 0).shift(-1).fillna(method="ffill")
-    temp["post_on_2b"] = temp["on_2b"].fillna(0).apply(lambda x: 1 if x>0 else 0).shift(-1).fillna(method="ffill")
-    temp["post_on_3b"] = temp["on_3b"].fillna(0).apply(lambda x: 1 if x>0 else 0).shift(-1).fillna(method="ffill")
+    for base in (1, 2, 3):
+        df[f"post_on_{base}b"] = df[f"on_{base}b"].fillna(0).apply(lambda x: 1 if x>0 else 0).shift(-1).fillna(method="ffill")
 
     # if next batter opposite handed
-    temp["post_opposite_hand"] = (temp["stand"]!=temp["p_throws"]).astype(int).shift(-1).fillna(method="ffill")
+    df["post_opposite_hand"] = (df["stand"]!=df["p_throws"]).astype(int).shift(-1).fillna(method="ffill")
 
-    return temp
+    return df
 
 # Cell
 

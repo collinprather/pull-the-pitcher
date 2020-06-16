@@ -49,7 +49,7 @@ def query_statcast(
         raise ValueError("output_type must be one of {'db', 'csv'}")
 
     # pulling data from statcast
-    data = statcast(start_dt, end_dt, team, verbose)
+    data = statcast(start_dt=start_dt, end_dt=end_dt, team=team, verbose=verbose)
 
     if output_type == "db":
         # creating db
