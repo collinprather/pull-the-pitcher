@@ -7,48 +7,62 @@ __all__ = ['postouts', 'outs_per_inning', 'batters_faced', 'get_games_pitchers_y
 import pandas as pd
 import sqlite3
 import numpy as np
-
-# Cell
-
-# already in data acquisition
-# def query_db(db_path: str = "../data/raw/statcast_pitches.db",
-#              year: str = "2019",
-#              columns: str = "*",
-#              limit=None,
-#              verbose=True):
-#     if verbose:
-#         print(f"querying db at {db_path} now.")
-#     conn = sqlite3.connect(db_path)
-#     query = f"""select {columns}
-#                 from statcast_{year}"""
-#     if limit:
-#         query += f" limit {limit}"
-#     df = pd.read_sql_query(query, conn)
-#     conn.close()
-#     return df
+from .acquisition import query_db
 
 # Cell
 
 # utility functions for identifying openers
 
 
-def postouts(df):
-    """assumes sorted game pitcher df"""
+def postouts(game_pitcher_df: pd.DataFrame):
+    """
+    Appends a `"postouts"` column to DataFrame.
+
+    * input:
+        - `game_pitcher_df`: `pd.DataFrame`, df of pitches thrown by single pitcher in single game, sorted by `at_bat_number`
+
+    * output:
+        - `game_pitcher_df`: `pd.DataFrame`, same as input, with the added `"postouts"` column.
+    """
     # put assert here to ensure that the df is sorted and is all of the same pitcher
-    df["postouts"] = df["outs_when_up"].shift(-1).fillna(method="ffill")
+    game_pitcher_df["postouts"] = game_pitcher_df["outs_when_up"].shift(-1).fillna(method="ffill")
 
     # if the inning changed, then the postouts is 3
-    df.loc[(df["inning"] != df["inning"].shift(-1)), "postouts"] = 3
-    return df
+    game_pitcher_df.loc[(game_pitcher_df["inning"] != game_pitcher_df["inning"].shift(-1)), "postouts"] = 3
+    return game_pitcher_df
 
 
 def outs_per_inning(x: pd.Series):
-    """assumes df came straight out of postouts()"""
-    # use should be: t.groupby(["inning"]).agg({"postouts": outs_per_inning})
+    """
+    An aggregation function that takes the sum of a one-time step difference in a `pd.Series`.
+    Intended to be used in a groupby aggregation to calculate the number of outs recorded in an inning.
+
+    * **usage**:
+
+    ```python
+    df.groupby(["inning"]).agg({"postouts": outs_per_inning})
+    ```
+
+    * input:
+        - `x`: `pd.Series`
+
+    * output:
+        - sum of one time-step differences in `x`
+    """
     return (x - x.shift(1).fillna(0)).sum()
 
 
 def batters_faced(at_bats: pd.Series):
+    """
+    For a series of at bat numbers (presumably, many repeated), this function
+    returns the number of unique at bats.
+
+    * input:
+        - `at_bats`: `pd.Series`, pitches in an individual
+
+    * output:
+        - `int`, number of at bats
+    """
     return len(at_bats.unique())
 
 # Cell
