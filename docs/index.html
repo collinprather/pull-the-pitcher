@@ -29,7 +29,7 @@ sidebar: home_sidebar
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Documentation"><a href="https://collinprather.github.io/pull_the_pitcher/">Documentation</a><a class="anchor-link" href="#Documentation"> </a></h4>
+<h4 id="Documentation"><a href="https://collinprather.github.io/pull-the-pitcher/">Documentation</a><a class="anchor-link" href="#Documentation"> </a></h4>
 </div>
 </div>
 </div>
@@ -76,7 +76,7 @@ sidebar: home_sidebar
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The first command-line utility is <a href="/pull_the_pitcher/data_acquisition#query_statcast"><code>query_statcast</code></a>, which invokes <code>pybaseball</code>'s <code>statcast()</code> function to retrieve pitch-level data from statcast. This data will then be stored in a <a href="https://www.sqlite.org/fileformat.html"><code>sqlite3</code> db file</a>. Here's an example of how you could use it.</p>
+<p>The first command-line utility is <a href="/pull-the-pitcher/data_acquisition#query_statcast"><code>query_statcast</code></a>, which invokes <code>pybaseball</code>'s <code>statcast()</code> function to retrieve pitch-level data from statcast. This data will then be stored in a <a href="https://www.sqlite.org/fileformat.html"><code>sqlite3</code> db file</a>. Here's an example of how you could use it.</p>
 <div class="highlight"><pre><span></span>$ query_statcast --start_dt <span class="m">2019</span>-05-07 --end_dt <span class="m">2019</span>-06-09 --output_type db --output_path /tmp
 This is a large query, it may take a moment to <span class="nb">complete</span>
 Completed sub-query from <span class="m">2019</span>-05-07 to <span class="m">2019</span>-05-12
@@ -92,7 +92,7 @@ Completed sub-query from <span class="m">2019</span>-06-06 to <span class="m">20
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Preparing-data-for-modeling">Preparing data for modeling<a class="anchor-link" href="#Preparing-data-for-modeling"> </a></h3><p>The next command-line utility is <a href="/pull_the_pitcher/data_pipeline#prep_data_for_modeling"><code>prep_data_for_modeling</code></a>, which pulls data from the database created in the previous command, then performs feature engineering and various aggregations to yield clean, at-bat level data amenable to a machine learning model. Here's an example of how you might use it.</p>
+<h3 id="Preparing-data-for-modeling">Preparing data for modeling<a class="anchor-link" href="#Preparing-data-for-modeling"> </a></h3><p>The next command-line utility is <a href="/pull-the-pitcher/data_pipeline#prep_data_for_modeling"><code>prep_data_for_modeling</code></a>, which pulls data from the database created in the previous command, then performs feature engineering and various aggregations to yield clean, at-bat level data amenable to a machine learning model. Here's an example of how you might use it.</p>
 <div class="highlight"><pre><span></span>$ prep_data_for_modeling --db_path /tmp/statcast_pitches.db --train_test_split_by start --output_path /tmp/
 querying db at /tmp/statcast_pitches.db now.
 In this dataset, there are <span class="m">457</span> total games.

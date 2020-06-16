@@ -45,12 +45,164 @@ description: "This is a script which invokes `pybaseball`'s <a href='https://git
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="query_statcast" class="doc_header"><code>query_statcast</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_statcast</code>(<strong><code>start_dt</code></strong>:"Beginning date to pull data from"=<em><code>None</code></em>, <strong><code>end_dt</code></strong>:"End date to pull data from"=<em><code>None</code></em>, <strong><code>team</code></strong>:"Abbreviation for team of interest"=<em><code>None</code></em>, <strong><code>verbose</code></strong>:"Whether or not to print verbose updates"=<em><code>True</code></em>, <strong><code>output_type</code></strong>:"What format to save data in"=<em><code>'db'</code></em>, <strong><code>overwrite</code></strong>:"Whether or not to overwrite the db table if it already exists"=<em><code>True</code></em>, <strong><code>output_path</code></strong>:"path to location that data should be saved"=<em><code>'.'</code></em>)</p>
+<h4 id="query_statcast" class="doc_header"><code>query_statcast</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_statcast</code>(<strong><code>start_dt</code></strong>:"Beginning date to pull data from"=<em><code>None</code></em>, <strong><code>end_dt</code></strong>:"End date to pull data from"=<em><code>None</code></em>, <strong><code>team</code></strong>:"Abbreviation for team of interest"=<em><code>None</code></em>, <strong><code>verbose</code></strong>:"Whether or not to print verbose updates"=<em><code>True</code></em>, <strong><code>output_type</code></strong>:"What format to save data in"=<em><code>'db'</code></em>, <strong><code>overwrite</code></strong>:"Whether or not to overwrite the db table if it already exists"=<em><code>True</code></em>, <strong><code>output_path</code></strong>:"path to location that data should be saved"=<em><code>'.'</code></em>)</p>
 </blockquote>
-<p>Note, working with sqlite files, as opposed to csv files is the recommended usage.</p>
+<p>Callable from the command-line or in Python. Pulls pitch-level MLB data from <a href="https://baseballsavant.mlb.com/statcast_search">statcast</a>.
+Saves as either a sqlite db file, or csv.</p>
+<p>inputs:</p>
+
+<pre><code>- `start_dt`: `str`, Beginning date to pull data from = None
+- `end_dt`: `str`, End date to pull data from = None
+- `team`: `str`, abbreviation for team of interest = None
+- `verbose`: `bool`, Whether or not to print verbose updates
+- `output_type`: `str`, What format to save data in (must be one of {'db', 'csv'}) = 'db'
+- `overwrite`: `bool`, Whether or not to overwrite the db table if it already exists = True
+- `output_path`: `str`, Path to the location that the data should be saved at = '.'
+
+</code></pre>
+<p>outputs:</p>
+
+<pre><code>- None</code></pre>
 
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># output type must be db or csv</span>
+<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+    <span class="n">query_statcast</span><span class="p">(</span><span class="n">output_type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># making sure a db file is created</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;/tmp&quot;</span>
+<span class="n">start_dt</span> <span class="o">=</span> <span class="n">end_dt</span> <span class="o">=</span> <span class="s2">&quot;2019-07-07&quot;</span>
+<span class="n">query_statcast</span><span class="p">(</span>
+    <span class="n">start_dt</span><span class="o">=</span><span class="n">start_dt</span><span class="p">,</span> <span class="n">end_dt</span><span class="o">=</span><span class="n">end_dt</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;db&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="n">output_path</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/statcast_pitches.db&quot;</span><span class="p">)</span>
+
+<span class="c1"># making sure the db file will be over-written without error</span>
+<span class="n">query_statcast</span><span class="p">(</span>
+    <span class="n">start_dt</span><span class="o">=</span><span class="n">start_dt</span><span class="p">,</span>
+    <span class="n">end_dt</span><span class="o">=</span><span class="n">end_dt</span><span class="p">,</span>
+    <span class="n">team</span><span class="o">=</span><span class="s2">&quot;BOS&quot;</span><span class="p">,</span>
+    <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;db&quot;</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="o">=</span><span class="n">output_path</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># making sure a csv file is created</span>
+<span class="n">query_statcast</span><span class="p">(</span>
+    <span class="n">start_dt</span><span class="o">=</span><span class="n">start_dt</span><span class="p">,</span> <span class="n">end_dt</span><span class="o">=</span><span class="n">end_dt</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="n">output_path</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/statcast_</span><span class="si">{</span><span class="n">start_dt</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="query_db" class="doc_header"><code>query_db</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L72" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_db</code>(<strong><code>db_path</code></strong>:<code>str</code>=<em><code>'../data/raw/statcast_pitches.db'</code></em>, <strong><code>year</code></strong>:<code>str</code>=<em><code>'2019'</code></em>, <strong><code>columns</code></strong>:<code>str</code>=<em>`'</em>'<code>*, **</code>limit<code>**:</code>int<code>=*</code>None<code>*, **</code>verbose<code>**:</code>bool<code>=*</code>True`*)</p>
+</blockquote>
+<p>Queries a sqlite db file. Assumes that it's been created by <a href="/pull-the-pitcher/data_acquisition#query_statcast"><code>query_statcast</code></a>.
+Only queries for a single year at a time.</p>
+<p>intputs:</p>
+
+<pre><code>- `db_path`: `str`, path that db file is located at
+- `year`: `str`, year of data to query
+- `columns`: `str`, which columns from the [statcast data](https://baseballsavant.mlb.com/csv-docs) to include in table
+- `limit`: `int`, the maximum number of rows to retrieve ([postgresql documentation](https://www.postgresql.org/docs/8.1/queries-limit.html))
+- `verbose`: `bool`, Whether or not to print verbose updates
+
+</code></pre>
+<p>output:</p>
+
+<pre><code>- `df`: `pd.DataFrame`, DataFrame populated with data queried from database</code></pre>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># BOS @ DET on 7/7/19</span>
+<span class="n">db_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/statcast_pitches.db&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">query_db</span><span class="p">(</span><span class="n">db_path</span><span class="o">=</span><span class="n">db_path</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;away_team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;BOS&quot;</span>
+
+<span class="c1"># checking consistent rows and columns (extra column because index is included)</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">339</span><span class="p">,</span> <span class="mi">91</span><span class="p">)</span>
+
+<span class="c1"># year not present in db gives empty DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">query_db</span><span class="p">(</span><span class="n">db_path</span><span class="o">=</span><span class="n">db_path</span><span class="p">,</span>
+              <span class="n">year</span><span class="o">=</span><span class="s2">&quot;2018&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span>
+
+<span class="c1"># also testing that csv file is of expected size</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/statcast_</span><span class="si">{</span><span class="n">start_dt</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4457</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+
+<span class="c1"># clean-up</span>
+<span class="o">!</span> rm <span class="o">{</span>output_path<span class="o">}</span>/statcast_*
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>querying db at /tmp/statcast_pitches.db now.
+querying db at /tmp/statcast_pitches.db now.
+</pre>
+</div>
 </div>
 
 </div>
@@ -75,100 +227,31 @@ Completed sub-query from <span class="m">2019</span>-05-19 to <span class="m">20
 Completed sub-query from <span class="m">2019</span>-05-25 to <span class="m">2019</span>-05-30
 Completed sub-query from <span class="m">2019</span>-05-31 to <span class="m">2019</span>-06-05
 Completed sub-query from <span class="m">2019</span>-06-06 to <span class="m">2019</span>-06-09
+$ ls /tmp/ <span class="p">|</span> grep statcast_pitches
+statcast_pitches.db
 </pre></div>
 
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> ls /tmp/ <span class="p">|</span> grep statcast_pitches
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>statcast_pitches.db
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Using-Python">Using Python<a class="anchor-link" href="#Using-Python"> </a></h3>
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">query_statcast</span><span class="p">(</span><span class="n">start_dt</span><span class="o">=</span><span class="s2">&quot;2019-06-07&quot;</span><span class="p">,</span>
-               <span class="n">end_dt</span><span class="o">=</span><span class="s2">&quot;2019-06-09&quot;</span><span class="p">,</span>
-               <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span>
-               <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;/tmp&quot;</span><span class="p">)</span>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">query_statcast</span><span class="p">(</span>
+        <span class="n">start_dt</span><span class="o">=</span><span class="s2">&quot;2019-06-07&quot;</span><span class="p">,</span> <span class="n">end_dt</span><span class="o">=</span><span class="s2">&quot;2019-06-09&quot;</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;/tmp&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span>$ ls /tmp/ <span class="p">|</span> grep statcast
 </pre></div>
 
-    </div>
 </div>
 </div>
-
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> ls /tmp/ <span class="p">|</span> grep statcast
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>statcast_2019.csv
-statcast_pitches.db
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
 </div>
  
 

@@ -3,7 +3,7 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"query_statcast": "00_data_acquisition.ipynb",
-         "query_db": "01_data_processing.ipynb",
+         "query_db": "00_data_acquisition.ipynb",
          "postouts": "01_data_processing.ipynb",
          "outs_per_inning": "01_data_processing.ipynb",
          "batters_faced": "01_data_processing.ipynb",
@@ -28,6 +28,7 @@ index = {"query_statcast": "00_data_acquisition.ipynb",
          "get_starts_from_labels": "03_metrics.ipynb",
          "mean_pa_diff": "03_metrics.ipynb",
          "mean_target_diff": "03_metrics.ipynb",
+         "preds_histogram": "03_metrics.ipynb",
          "print_all_metrics": "03_metrics.ipynb"}
 
 modules = ["data/acquisition.py",

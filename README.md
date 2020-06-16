@@ -2,7 +2,7 @@
 
 
 
-#### [Documentation](https://collinprather.github.io/pull_the_pitcher/)
+#### [Documentation](https://collinprather.github.io/pull-the-pitcher/)
 
 > Predicting when MLB managers in the AL will pull their starting pitchers.
 
