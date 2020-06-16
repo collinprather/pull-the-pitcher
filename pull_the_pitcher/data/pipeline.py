@@ -5,6 +5,7 @@ __all__ = ['embedding_cols', 'feature_cols', 'cols', 'add_targets', 'stack_into_
 
 # Internal Cell
 from . import processing
+from .processing import last
 from fastscript import *
 import pandas as pd
 import numpy as np
@@ -143,7 +144,7 @@ def prep_data_for_modeling(db_path: Param(help="Path to db with statcast data",
                 print(f"Just processed {i}th start.")
 
         cleaned_df = processing.preliminary_clean(df, g, p)
-        agged_df = processing.aggregate_at_bats(cleaned_df)
+        agged_df = processing.aggregate_at_bats(cleaned_df, at_bat_aggs)
         feature_engineered_df = processing.feature_engineering(agged_df)
 
         # making sure starting pitcher is in AL

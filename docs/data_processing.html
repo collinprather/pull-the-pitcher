@@ -53,6 +53,13 @@ description: "Functions to clean, transform, and aggregate the raw pitch-level d
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -60,7 +67,7 @@ description: "Functions to clean, transform, and aggregate the raw pitch-level d
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="postouts" class="doc_header"><code>postouts</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L16" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>postouts</code>(<strong><code>game_pitcher_df</code></strong>:<code>DataFrame</code>)</p>
+<h4 id="add_postouts" class="doc_header"><code>add_postouts</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>add_postouts</code>(<strong><code>game_pitcher_df</code></strong>:<code>DataFrame</code>)</p>
 </blockquote>
 <p>Appends a <code>"postouts"</code> column to DataFrame.</p>
 <ul>
@@ -97,7 +104,7 @@ description: "Functions to clean, transform, and aggregate the raw pitch-level d
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="outs_per_inning" class="doc_header"><code>outs_per_inning</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L34" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>outs_per_inning</code>(<strong><code>x</code></strong>:<code>Series</code>)</p>
+<h4 id="outs_per_inning" class="doc_header"><code>outs_per_inning</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L55" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>outs_per_inning</code>(<strong><code>x</code></strong>:<code>Series</code>)</p>
 </blockquote>
 <p>An aggregation function that takes the sum of a one-time step difference in a <code>pd.Series</code>.
 Intended to be used in a groupby aggregation to calculate the number of outs recorded in an inning.</p>
@@ -140,7 +147,7 @@ Intended to be used in a groupby aggregation to calculate the number of outs rec
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="batters_faced" class="doc_header"><code>batters_faced</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L54" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>batters_faced</code>(<strong><code>at_bats</code></strong>:<code>Series</code>)</p>
+<h4 id="batters_faced" class="doc_header"><code>batters_faced</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L75" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>batters_faced</code>(<strong><code>at_bats</code></strong>:<code>Series</code>)</p>
 </blockquote>
 <p>For a series of at bat numbers (presumably, many repeated), this function
 returns the number of unique at bats.</p>
@@ -174,10 +181,10 @@ returns the number of unique at bats.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># postouts test</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># add_postouts test</span>
 <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;outs_when_up&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                         <span class="s2">&quot;inning&quot;</span><span class="p">:</span>       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
-<span class="n">test_df</span> <span class="o">=</span> <span class="n">postouts</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">add_postouts</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
 <span class="k">assert</span> <span class="nb">list</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;postouts&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
 <span class="c1"># outs_per_inning test</span>
@@ -216,7 +223,7 @@ returns the number of unique at bats.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_games_pitchers_years" class="doc_header"><code>get_games_pitchers_years</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_games_pitchers_years</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
+<h4 id="get_games_pitchers_years" class="doc_header"><code>get_games_pitchers_years</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L90" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_games_pitchers_years</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Filter out openers to get all game-pitcher combinations that qualify</p>
 
@@ -247,7 +254,7 @@ returns the number of unique at bats.</p>
 
 <span class="c1"># getting eligible games, pitchers, years (should be 26 combos)</span>
 <span class="n">games_pitchers_years</span> <span class="o">=</span> <span class="n">get_games_pitchers_years</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">games_pitchers_years</span><span class="p">)</span> <span class="o">==</span> <span class="mi">26</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">games_pitchers_years</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
 </pre></div>
 
     </div>
@@ -261,8 +268,8 @@ returns the number of unique at bats.</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>In this dataset, there are 15 total games.
-There are 4 &#39;openers&#39; in the dataset.
-There are 26 total eligible game-pitcher combinations in this dataset.
+There are 21 ineligible starts in the dataset (either &#39;openers&#39; or an NL team).
+There are 9 total eligible game-pitcher combinations in this dataset.
 </pre>
 </div>
 </div>
@@ -297,7 +304,7 @@ There are 26 total eligible game-pitcher combinations in this dataset.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="preliminary_clean" class="doc_header"><code>preliminary_clean</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L116" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preliminary_clean</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>g</code></strong>:<code>int</code>, <strong><code>p</code></strong>:<code>int</code>)</p>
+<h4 id="preliminary_clean" class="doc_header"><code>preliminary_clean</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L143" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preliminary_clean</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>g</code></strong>:<code>int</code>, <strong><code>p</code></strong>:<code>int</code>)</p>
 </blockquote>
 <p>Before aggregating, perform a preliminary cleaning of dataset</p>
 <ul>
@@ -335,11 +342,11 @@ There are 26 total eligible game-pitcher combinations in this dataset.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># testing preliminary clean</span>
 <span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">games_pitchers_years</span><span class="p">:</span>
-        <span class="n">game_pitcher_df</span> <span class="o">=</span> <span class="n">preliminary_clean</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-        <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">game_pitcher_df</span><span class="p">)</span>
+        <span class="n">cleaned_df</span> <span class="o">=</span> <span class="n">preliminary_clean</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cleaned_df</span><span class="p">)</span>
 
-<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">26</span>
-<span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">col</span> <span class="ow">in</span> <span class="n">dfs</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="s2">&quot;post_bat_score&quot;</span><span class="p">,</span> <span class="s2">&quot;post_on_2b&quot;</span><span class="p">,</span> <span class="s2">&quot;post_opposite_hand&quot;</span><span class="p">))</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+<span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">col</span> <span class="ow">in</span> <span class="n">dfs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="s2">&quot;post_bat_score&quot;</span><span class="p">,</span> <span class="s2">&quot;post_on_2b&quot;</span><span class="p">,</span> <span class="s2">&quot;post_opposite_hand&quot;</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -367,9 +374,22 @@ There are 26 total eligible game-pitcher combinations in this dataset.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="last" class="doc_header"><code>last</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L150" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>last</code>(<strong><code>x</code></strong>:<code>Series</code>)</p>
+<h4 id="last" class="doc_header"><code>last</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L178" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>last</code>(<strong><code>x</code></strong>:<code>Series</code>)</p>
 </blockquote>
-<p>Used for getting last value in df.groupby.agg</p>
+<p>Utility for grabbing last value in a pd.Series.
+Especially helpful when used in tandem with in pd.DataFrame.groupby.agg</p>
+<ul>
+<li><p>input:</p>
+<ul>
+<li><code>x</code>: <code>pd.Series</code></li>
+</ul>
+</li>
+<li><p>output:</p>
+<ul>
+<li>last value in <code>x</code></li>
+</ul>
+</li>
+</ul>
 
 </div>
 
@@ -392,14 +412,74 @@ There are 26 total eligible game-pitcher combinations in this dataset.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="aggregate_at_bats" class="doc_header"><code>aggregate_at_bats</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L174" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>aggregate_at_bats</code>(<strong><code>df</code></strong>:<code>DataFrame</code>)</p>
+<h4 id="aggregate_at_bats" class="doc_header"><code>aggregate_at_bats</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L192" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>aggregate_at_bats</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>at_bat_aggs</code></strong>:<code>dict</code>)</p>
 </blockquote>
-<p>assumes the df has come straight out of preliminary clean</p>
+<p>Aggregates statcast data from the pitch to at-bat level.
+Assumes the df has come straight out of preliminary clean.</p>
+<ul>
+<li><p>input:</p>
+<ul>
+<li><code>df</code>: <code>pd.DataFrame</code>, Statcast pitch-level data (just went through preliminary clean)</li>
+</ul>
+</li>
+<li><p>output:</p>
+<ul>
+<li><code>agged_df</code>: <code>pd.DataFrame</code>, at-bat level aggregated DataFrame</li>
+</ul>
+</li>
+</ul>
 
 </div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># testing aggregate_at_bats</span>
+<span class="n">at_bat_aggs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;balls&quot;</span><span class="p">:</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;strikes&quot;</span><span class="p">:</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pitch_number&quot;</span><span class="p">:</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;post_bat_score&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;post_fld_score&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;events&quot;</span><span class="p">:</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;postouts&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;post_on_1b&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;post_on_2b&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;post_on_3b&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;game_type&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;home_team&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;away_team&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;inning&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;inning_topbot&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;post_opposite_hand&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;game_year&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">games_pitchers_years</span><span class="p">:</span>
+    <span class="n">cleaned_df</span> <span class="o">=</span> <span class="n">preliminary_clean</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">agged_df</span> <span class="o">=</span> <span class="n">aggregate_at_bats</span><span class="p">(</span><span class="n">cleaned_df</span><span class="p">,</span> <span class="n">at_bat_aggs</span><span class="p">)</span>
+    <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">agged_df</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
+<span class="c1"># only a single pitcher in each df</span>
+<span class="k">assert</span> <span class="n">dfs</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="s2">&quot;pitcher&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -430,12 +510,26 @@ There are 26 total eligible game-pitcher combinations in this dataset.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="create_indicator" class="doc_header"><code>create_indicator</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L185" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_indicator</code>(<strong><code>df</code></strong>, <strong><code>col</code></strong>=<em><code>'events'</code></em>, <strong><code>indicators</code></strong>=<em><code>[]</code></em>, <strong><code>indicator_col_names</code></strong>=<em><code>[]</code></em>)</p>
+<h4 id="create_indicator" class="doc_header"><code>create_indicator</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L217" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_indicator</code>(<strong><code>df</code></strong>, <strong><code>col</code></strong>:<code>str</code>=<em><code>'events'</code></em>, <strong><code>indicators</code></strong>:<code>List</code>[<code>T</code>]=<em><code>[]</code></em>, <strong><code>indicator_col_names</code></strong>:<code>List</code>[<code>T</code>]=<em><code>[]</code></em>)</p>
 </blockquote>
-<p>:param col: string, column from which to create a new indicator column
-:param indicators: each time indicator occurs in col, assign a 1 to the indicator column
-:param indicator_col_names: name of new indicator columns
-:return:</p>
+<p>In the <a href="https://baseballsavant.mlb.com/statcast_search">statcast data</a> the
+<a href="https://baseballsavant.mlb.com/csv-docs#events">"events"</a> column
+is a textual recording of the event that occurred in the at bat.</p>
+<ul>
+<li><p>inputs:</p>
+<ul>
+<li><code>df</code>:, <code>pd.DataFrame</code>, at-bat level statcast data</li>
+<li><code>col</code>: <code>str</code>, the column populated with indicators</li>
+<li><code>indicators</code>: <code>list</code>, the categorical variables to turn to indicators</li>
+<li><code>indicator_col_names</code>: <code>list</code>, alternative (optional) names for the new indicators</li>
+</ul>
+</li>
+<li><p>outputs:</p>
+<ul>
+<li><code>df</code>, <code>pd.DataFrame</code>, mutated DataFrame containing the new indicators</li>
+</ul>
+</li>
+</ul>
 
 </div>
 
@@ -458,13 +552,61 @@ There are 26 total eligible game-pitcher combinations in this dataset.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="accumulate" class="doc_header"><code>accumulate</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L200" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>accumulate</code>(<strong><code>df</code></strong>, <strong><code>col</code></strong>, <strong><code>agg_func</code></strong>=<em><code>'cumsum'</code></em>)</p>
+<h4 id="accumulate" class="doc_header"><code>accumulate</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L242" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>accumulate</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>col</code></strong>:<code>str</code>, <strong><code>agg_func</code></strong>:<code>str</code>=<em><code>'cumsum'</code></em>)</p>
 </blockquote>
+<p>Utility to perform a cumulative accumulation of a single column</p>
+<ul>
+<li><p>input:</p>
+<ul>
+<li><code>df</code>: <code>pd.DataFrame</code>, DataFrame of at-bat leve statcast data</li>
+<li><code>col</code>: <code>str</code>, column to accumulate</li>
+<li><code>agg_func</code>: <code>str</code>, string recognized by Pandas as a function</li>
+</ul>
+</li>
+<li><p>output:</p>
+<ul>
+<li><code>df</code>: <code>pd.DataFrame</code>, mutated DataFrame with additional accumulated columns</li>
+</ul>
+</li>
+</ul>
 
 </div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># testing create_indicator</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;events&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;single&quot;</span><span class="p">,</span> <span class="s2">&quot;double&quot;</span><span class="p">,</span> <span class="s2">&quot;triple&quot;</span><span class="p">,</span> <span class="s2">&quot;homerun&quot;</span><span class="p">,</span> <span class="s2">&quot;walk&quot;</span><span class="p">,</span> <span class="s2">&quot;single&quot;</span><span class="p">]}</span>
+<span class="p">)</span>
+<span class="n">indicators</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;single&quot;</span><span class="p">,</span> <span class="s2">&quot;double&quot;</span><span class="p">,</span> <span class="s2">&quot;triple&quot;</span><span class="p">,</span> <span class="s2">&quot;homerun&quot;</span><span class="p">,</span> <span class="s2">&quot;walk&quot;</span><span class="p">]</span>
+<span class="n">indicator_df</span> <span class="o">=</span> <span class="n">create_indicator</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="n">indicators</span><span class="o">=</span><span class="n">indicators</span><span class="p">)</span>
+<span class="k">assert</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">indicator_df</span><span class="p">[</span><span class="n">indicators</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                                                 <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                                                 <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                                                 <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                                                 <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                                                                 <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+
+<span class="c1"># testing accumulate</span>
+<span class="n">accum_df</span> <span class="o">=</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">indicator_df</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">list</span><span class="p">(</span><span class="n">accum_df</span><span class="p">[</span><span class="s2">&quot;single_cumsum&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -489,14 +631,50 @@ There are 26 total eligible game-pitcher combinations in this dataset.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="feature_engineering" class="doc_header"><code>feature_engineering</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L209" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>feature_engineering</code>(<strong><code>t</code></strong>:<code>DataFrame</code>)</p>
+<h4 id="feature_engineering" class="doc_header"><code>feature_engineering</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L266" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>feature_engineering</code>(<strong><code>df</code></strong>:<code>DataFrame</code>)</p>
 </blockquote>
-<p>Assuming df came straight out of aggregate_at_bats</p>
+<p>Performs feature engineering on at-bat level statcast data.
+df should come directly out of <a href="/pull-the-pitcher/data_processing#aggregate_at_bats"><code>aggregate_at_bats</code></a>.</p>
+<ul>
+<li><p>input:</p>
+<ul>
+<li><code>df</code>: <code>pd.DataFrame</code>, at-bat level statcast data</li>
+</ul>
+</li>
+<li><p>output:</p>
+<ul>
+<li><code>df</code>: <code>pd.DataFrame</code>, mutated to have many new features.</li>
+</ul>
+</li>
+</ul>
 
 </div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># testing feature_engineering</span>
+<span class="n">feature_engineered_df</span> <span class="o">=</span> <span class="n">feature_engineering</span><span class="p">(</span><span class="n">dfs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">feature_engineered_df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">assert</span> <span class="nb">all</span><span class="p">(</span>
+    <span class="n">col</span> <span class="ow">in</span> <span class="n">feature_engineered_df</span><span class="o">.</span><span class="n">columns</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;end_inning&quot;</span><span class="p">,</span> <span class="s2">&quot;times_thru_order&quot;</span><span class="p">,</span> <span class="s2">&quot;pitch_total&quot;</span><span class="p">,</span> <span class="s2">&quot;bases_cumsum&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
