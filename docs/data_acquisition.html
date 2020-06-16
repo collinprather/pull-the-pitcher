@@ -49,20 +49,24 @@ description: "This is a script which invokes `pybaseball`'s <a href='https://git
 </blockquote>
 <p>Callable from the command-line or in Python. Pulls pitch-level MLB data from <a href="https://baseballsavant.mlb.com/statcast_search">statcast</a>.
 Saves as either a sqlite db file, or csv.</p>
-<p>inputs:</p>
-
-<pre><code>- `start_dt`: `str`, Beginning date to pull data from = None
-- `end_dt`: `str`, End date to pull data from = None
-- `team`: `str`, abbreviation for team of interest = None
-- `verbose`: `bool`, Whether or not to print verbose updates
-- `output_type`: `str`, What format to save data in (must be one of {'db', 'csv'}) = 'db'
-- `overwrite`: `bool`, Whether or not to overwrite the db table if it already exists = True
-- `output_path`: `str`, Path to the location that the data should be saved at = '.'
-
-</code></pre>
-<p>outputs:</p>
-
-<pre><code>- None</code></pre>
+<ul>
+<li><p>inputs:</p>
+<ul>
+<li><code>start_dt</code>: <code>str</code>, Beginning date to pull data from = None</li>
+<li><code>end_dt</code>: <code>str</code>, End date to pull data from = None</li>
+<li><code>team</code>: <code>str</code>, abbreviation for team of interest = None</li>
+<li><code>verbose</code>: <code>bool</code>, Whether or not to print verbose updates</li>
+<li><code>output_type</code>: <code>str</code>, What format to save data in (must be one of {'db', 'csv'}) = 'db'</li>
+<li><code>overwrite</code>: <code>bool</code>, Whether or not to overwrite the db table if it already exists = True</li>
+<li><code>output_path</code>: <code>str</code>, Path to the location that the data should be saved at = '.'</li>
+</ul>
+</li>
+<li><p>outputs:</p>
+<ul>
+<li>None</li>
+</ul>
+</li>
+</ul>
 
 </div>
 
@@ -138,18 +142,22 @@ Saves as either a sqlite db file, or csv.</p>
 </blockquote>
 <p>Queries a sqlite db file. Assumes that it's been created by <a href="/pull-the-pitcher/data_acquisition#query_statcast"><code>query_statcast</code></a>.
 Only queries for a single year at a time.</p>
-<p>intputs:</p>
-
-<pre><code>- `db_path`: `str`, path that db file is located at
-- `year`: `str`, year of data to query
-- `columns`: `str`, which columns from the [statcast data](https://baseballsavant.mlb.com/csv-docs) to include in table
-- `limit`: `int`, the maximum number of rows to retrieve ([postgresql documentation](https://www.postgresql.org/docs/8.1/queries-limit.html))
-- `verbose`: `bool`, Whether or not to print verbose updates
-
-</code></pre>
-<p>output:</p>
-
-<pre><code>- `df`: `pd.DataFrame`, DataFrame populated with data queried from database</code></pre>
+<ul>
+<li><p>intputs:</p>
+<ul>
+<li><code>db_path</code>: <code>str</code>, path that db file is located at</li>
+<li><code>year</code>: <code>str</code>, year of data to query</li>
+<li><code>columns</code>: <code>str</code>, which columns from the <a href="https://baseballsavant.mlb.com/csv-docs">statcast data</a> to include in table</li>
+<li><code>limit</code>: <code>int</code>, the maximum number of rows to retrieve (<a href="https://www.postgresql.org/docs/8.1/queries-limit.html">postgresql documentation</a>)</li>
+<li><code>verbose</code>: <code>bool</code>, Whether or not to print verbose updates</li>
+</ul>
+</li>
+<li><p>output:</p>
+<ul>
+<li><code>df</code>: <code>pd.DataFrame</code>, DataFrame populated with data queried from database</li>
+</ul>
+</li>
+</ul>
 
 </div>
 

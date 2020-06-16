@@ -32,7 +32,7 @@ def query_statcast(
     Callable from the command-line or in Python. Pulls pitch-level MLB data from [statcast](https://baseballsavant.mlb.com/statcast_search).
     Saves as either a sqlite db file, or csv.
 
-    inputs:
+    * inputs:
         - `start_dt`: `str`, Beginning date to pull data from = None
         - `end_dt`: `str`, End date to pull data from = None
         - `team`: `str`, abbreviation for team of interest = None
@@ -41,7 +41,7 @@ def query_statcast(
         - `overwrite`: `bool`, Whether or not to overwrite the db table if it already exists = True
         - `output_path`: `str`, Path to the location that the data should be saved at = '.'
 
-    outputs:
+    * outputs:
         - None
     """
     # checking for correct output type
@@ -80,14 +80,14 @@ def query_db(
     Queries a sqlite db file. Assumes that it's been created by `query_statcast`.
     Only queries for a single year at a time.
 
-    intputs:
+    * intputs:
         - `db_path`: `str`, path that db file is located at
         - `year`: `str`, year of data to query
         - `columns`: `str`, which columns from the [statcast data](https://baseballsavant.mlb.com/csv-docs) to include in table
         - `limit`: `int`, the maximum number of rows to retrieve ([postgresql documentation](https://www.postgresql.org/docs/8.1/queries-limit.html))
         - `verbose`: `bool`, Whether or not to print verbose updates
 
-    output:
+    * output:
         - `df`: `pd.DataFrame`, DataFrame populated with data queried from database
     """
     if verbose:
