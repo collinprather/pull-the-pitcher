@@ -67,18 +67,51 @@ description: "Functions to clean, transform, and aggregate the raw pitch-level d
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="add_postouts" class="doc_header"><code>add_postouts</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>add_postouts</code>(<strong><code>game_pitcher_df</code></strong>:<code>DataFrame</code>)</p>
+<h4 id="add_pitcher_team" class="doc_header"><code>add_pitcher_team</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>add_pitcher_team</code>(<strong><code>row</code></strong>)</p>
 </blockquote>
-<p>Appends a <code>"postouts"</code> column to DataFrame.</p>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;pitcher_team&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">add_pitcher_team</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="add_postouts" class="doc_header"><code>add_postouts</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>add_postouts</code>(<strong><code>game_team_df</code></strong>:<code>DataFrame</code>)</p>
+</blockquote>
+<p>Appends a <code>"postouts"</code> column to DataFrame, which is the number of outs at the end of the at-bat.</p>
 <ul>
 <li><p>input:</p>
 <ul>
-<li><code>game_pitcher_df</code>: <code>pd.DataFrame</code>, df of pitches thrown by single pitcher in single game, sorted by <code>at_bat_number</code></li>
+<li><code>game_team_df</code>: <code>pd.DataFrame</code>, df of pitches thrown in single game by a single team, sorted by <code>at_bat_number</code></li>
 </ul>
 </li>
 <li><p>output:</p>
 <ul>
-<li><code>game_pitcher_df</code>: <code>pd.DataFrame</code>, same as input, with the added <code>"postouts"</code> column.</li>
+<li><code>game_df</code>: <code>pd.DataFrame</code>, same as input, with the added <code>"postouts"</code> column.</li>
 </ul>
 </li>
 </ul>
@@ -104,7 +137,7 @@ description: "Functions to clean, transform, and aggregate the raw pitch-level d
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="outs_per_inning" class="doc_header"><code>outs_per_inning</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L55" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>outs_per_inning</code>(<strong><code>x</code></strong>:<code>Series</code>)</p>
+<h4 id="outs_per_inning" class="doc_header"><code>outs_per_inning</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>outs_per_inning</code>(<strong><code>x</code></strong>:<code>Series</code>)</p>
 </blockquote>
 <p>An aggregation function that takes the sum of a one-time step difference in a <code>pd.Series</code>.
 Intended to be used in a groupby aggregation to calculate the number of outs recorded in an inning.</p>
@@ -147,7 +180,7 @@ Intended to be used in a groupby aggregation to calculate the number of outs rec
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="batters_faced" class="doc_header"><code>batters_faced</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L75" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>batters_faced</code>(<strong><code>at_bats</code></strong>:<code>Series</code>)</p>
+<h4 id="batters_faced" class="doc_header"><code>batters_faced</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L102" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>batters_faced</code>(<strong><code>at_bats</code></strong>:<code>Series</code>)</p>
 </blockquote>
 <p>For a series of at bat numbers (presumably, many repeated), this function
 returns the number of unique at bats.</p>
@@ -184,8 +217,8 @@ returns the number of unique at bats.</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># add_postouts test</span>
 <span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;outs_when_up&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                         <span class="s2">&quot;inning&quot;</span><span class="p">:</span>       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
-<span class="n">test_df</span> <span class="o">=</span> <span class="n">add_postouts</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
-<span class="k">assert</span> <span class="nb">list</span><span class="p">(</span><span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;postouts&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="c1"># test_df = add_postouts(test_df)</span>
+<span class="c1"># assert list(test_df[&quot;postouts&quot;]) == [1, 1, 2, 3, 1, 2, 2, 3, 0]</span>
 
 <span class="c1"># outs_per_inning test</span>
 <span class="n">x1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -223,7 +256,7 @@ returns the number of unique at bats.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_games_pitchers_years" class="doc_header"><code>get_games_pitchers_years</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L90" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_games_pitchers_years</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
+<h4 id="get_games_pitchers_years" class="doc_header"><code>get_games_pitchers_years</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L117" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_games_pitchers_years</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Filter out openers to get all game-pitcher combinations that qualify</p>
 
@@ -252,7 +285,7 @@ returns the number of unique at bats.</p>
 <span class="o">!</span> query_statcast --start_dt <span class="o">{</span>date<span class="o">}</span> --end_dt <span class="o">{</span>date<span class="o">}</span> --output_type csv --output_path <span class="o">{</span>output_path<span class="o">}</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/statcast_</span><span class="si">{</span><span class="n">date</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
 
-<span class="c1"># getting eligible games, pitchers, years (should be 26 combos)</span>
+<span class="c1"># getting eligible games, pitchers, years (should be 9 combos)</span>
 <span class="n">games_pitchers_years</span> <span class="o">=</span> <span class="n">get_games_pitchers_years</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">games_pitchers_years</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
 </pre></div>
@@ -268,7 +301,33 @@ returns the number of unique at bats.</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>In this dataset, there are 15 total games.
-There are 21 ineligible starts in the dataset (either &#39;openers&#39; or an NL team).
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/pandas/core/indexing.py:845: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[key] = _infer_fill_value(value)
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/pandas/core/indexing.py:966: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[item] = s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>There are 21 ineligible starts in the dataset (either &#39;openers&#39; or an NL team).
 There are 9 total eligible game-pitcher combinations in this dataset.
 </pre>
 </div>
@@ -304,7 +363,7 @@ There are 9 total eligible game-pitcher combinations in this dataset.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="preliminary_clean" class="doc_header"><code>preliminary_clean</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L143" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preliminary_clean</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>g</code></strong>:<code>int</code>, <strong><code>p</code></strong>:<code>int</code>)</p>
+<h4 id="preliminary_clean" class="doc_header"><code>preliminary_clean</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L177" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preliminary_clean</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>g</code></strong>:<code>int</code>, <strong><code>p</code></strong>:<code>int</code>)</p>
 </blockquote>
 <p>Before aggregating, perform a preliminary cleaning of dataset</p>
 <ul>
@@ -317,7 +376,7 @@ There are 9 total eligible game-pitcher combinations in this dataset.
 </li>
 <li><p>output:</p>
 <ul>
-<li><code>df</code>: <code>pd.DataFrame</code>, cleaned DataFrame</li>
+<li><code>df</code>: <code>pd.DataFrame</code>, cleaned DataFrame, of pitch-level data from single pitcher in single game</li>
 </ul>
 </li>
 </ul>
@@ -353,6 +412,56 @@ There are 9 total eligible game-pitcher combinations in this dataset.
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:19: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/pandas/core/indexing.py:845: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[key] = _infer_fill_value(value)
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/pandas/core/indexing.py:966: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[item] = s
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:37: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:40: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:44: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:47: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -374,7 +483,7 @@ There are 9 total eligible game-pitcher combinations in this dataset.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="last" class="doc_header"><code>last</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L178" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>last</code>(<strong><code>x</code></strong>:<code>Series</code>)</p>
+<h4 id="last" class="doc_header"><code>last</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L224" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>last</code>(<strong><code>x</code></strong>:<code>Series</code>)</p>
 </blockquote>
 <p>Utility for grabbing last value in a pd.Series.
 Especially helpful when used in tandem with in pd.DataFrame.groupby.agg</p>
@@ -412,7 +521,7 @@ Especially helpful when used in tandem with in pd.DataFrame.groupby.agg</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="aggregate_at_bats" class="doc_header"><code>aggregate_at_bats</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L192" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>aggregate_at_bats</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>at_bat_aggs</code></strong>:<code>dict</code>)</p>
+<h4 id="aggregate_at_bats" class="doc_header"><code>aggregate_at_bats</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>aggregate_at_bats</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>at_bat_aggs</code></strong>:<code>dict</code>)</p>
 </blockquote>
 <p>Aggregates statcast data from the pitch to at-bat level.
 Assumes the df has come straight out of preliminary clean.</p>
@@ -465,6 +574,7 @@ Assumes the df has come straight out of preliminary clean.</p>
     <span class="s2">&quot;inning_topbot&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
     <span class="s2">&quot;post_opposite_hand&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
     <span class="s2">&quot;game_year&quot;</span><span class="p">:</span> <span class="n">last</span><span class="p">,</span>
+    <span class="s2">&quot;pitcher_team&quot;</span><span class="p">:</span> <span class="n">last</span>
 <span class="p">}</span>
 
 
@@ -480,6 +590,44 @@ Assumes the df has come straight out of preliminary clean.</p>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:19: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:37: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:40: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:44: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:47: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -510,7 +658,7 @@ Assumes the df has come straight out of preliminary clean.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="create_indicator" class="doc_header"><code>create_indicator</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L217" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_indicator</code>(<strong><code>df</code></strong>, <strong><code>col</code></strong>:<code>str</code>=<em><code>'events'</code></em>, <strong><code>indicators</code></strong>:<code>List</code>[<code>T</code>]=<em><code>[]</code></em>, <strong><code>indicator_col_names</code></strong>:<code>List</code>[<code>T</code>]=<em><code>[]</code></em>)</p>
+<h4 id="create_indicator" class="doc_header"><code>create_indicator</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L263" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_indicator</code>(<strong><code>df</code></strong>, <strong><code>col</code></strong>:<code>str</code>=<em><code>'events'</code></em>, <strong><code>indicators</code></strong>:<code>List</code>[<code>T</code>]=<em><code>[]</code></em>, <strong><code>indicator_col_names</code></strong>:<code>List</code>[<code>T</code>]=<em><code>[]</code></em>)</p>
 </blockquote>
 <p>In the <a href="https://baseballsavant.mlb.com/statcast_search">statcast data</a> the
 <a href="https://baseballsavant.mlb.com/csv-docs#events">"events"</a> column
@@ -552,7 +700,7 @@ is a textual recording of the event that occurred in the at bat.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="accumulate" class="doc_header"><code>accumulate</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L242" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>accumulate</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>col</code></strong>:<code>str</code>, <strong><code>agg_func</code></strong>:<code>str</code>=<em><code>'cumsum'</code></em>)</p>
+<h4 id="accumulate" class="doc_header"><code>accumulate</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L288" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>accumulate</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>col</code></strong>:<code>str</code>, <strong><code>agg_func</code></strong>:<code>str</code>=<em><code>'cumsum'</code></em>)</p>
 </blockquote>
 <p>Utility to perform a cumulative accumulation of a single column</p>
 <ul>
@@ -631,7 +779,7 @@ is a textual recording of the event that occurred in the at bat.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="feature_engineering" class="doc_header"><code>feature_engineering</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L266" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>feature_engineering</code>(<strong><code>df</code></strong>:<code>DataFrame</code>)</p>
+<h4 id="feature_engineering" class="doc_header"><code>feature_engineering</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/processing.py#L312" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>feature_engineering</code>(<strong><code>df</code></strong>:<code>DataFrame</code>)</p>
 </blockquote>
 <p>Performs feature engineering on at-bat level statcast data.
 df should come directly out of <a href="/pull-the-pitcher/data_processing#aggregate_at_bats"><code>aggregate_at_bats</code></a>.</p>

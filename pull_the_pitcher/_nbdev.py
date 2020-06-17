@@ -5,6 +5,7 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"query_statcast": "00_data_acquisition.ipynb",
          "query_db": "00_data_acquisition.ipynb",
          "AL_teams": "01_data_processing.ipynb",
+         "add_pitcher_team": "01_data_processing.ipynb",
          "add_postouts": "01_data_processing.ipynb",
          "outs_per_inning": "01_data_processing.ipynb",
          "batters_faced": "01_data_processing.ipynb",

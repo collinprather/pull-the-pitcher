@@ -214,7 +214,7 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="prep_data_for_modeling" class="doc_header"><code>prep_data_for_modeling</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>prep_data_for_modeling</code>(<strong><code>db_path</code></strong>:"Path to db with statcast data"=<em><code>'./data/raw/statcast_pitches.db'</code></em>, <strong><code>years</code></strong>:"Year of statcast data to process"=<em><code>['2019']</code></em>, <strong><code>verbose</code></strong>:"Whether to print out updates on processing"=<em><code>True</code></em>, <strong><code>train_test_split_by</code></strong>:"How to split into train/test sets. One of {'start', 'year'}."=<em><code>'start'</code></em>, <strong><code>test_size</code></strong>:"Percent of data to allocate to test set"=<em><code>0.25</code></em>, <strong><code>output_path</code></strong>:"Path to save processed csv files"=<em><code>'./data/processed/'</code></em>)</p>
+<h4 id="prep_data_for_modeling" class="doc_header"><code>prep_data_for_modeling</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L124" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>prep_data_for_modeling</code>(<strong><code>db_path</code></strong>:"Path to db with statcast data"=<em><code>'./data/raw/statcast_pitches.db'</code></em>, <strong><code>years</code></strong>:"Year of statcast data to process"=<em><code>['2019']</code></em>, <strong><code>verbose</code></strong>:"Whether to print out updates on processing"=<em><code>True</code></em>, <strong><code>train_test_split_by</code></strong>:"How to split into train/test sets. One of {'start', 'year'}."=<em><code>'start'</code></em>, <strong><code>test_size</code></strong>:"Percent of data to allocate to test set"=<em><code>0.25</code></em>, <strong><code>output_path</code></strong>:"Path to save processed csv files"=<em><code>'./data/processed/'</code></em>)</p>
 </blockquote>
 
 </div>
@@ -281,9 +281,11 @@ Completed sub-query from 2019-07-19 to 2019-07-20
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-blue-fg">com.apple.launchd.82pLsk9OX7</span> <span class="ansi-blue-fg">recsim</span>
-<span class="ansi-blue-fg">com.google.Keystone</span>          statcast_pitches.db
-<span class="ansi-blue-fg">powerlog</span>                     t.py
+<pre><span class="ansi-blue-fg">com.apple.launchd.82pLsk9OX7</span> statcast_pitches.db
+<span class="ansi-blue-fg">com.google.Keystone</span>          t.py
+mappers_2019_2019.pkl        test_2019.csv
+<span class="ansi-blue-fg">powerlog</span>                     train_2019.csv
+<span class="ansi-blue-fg">recsim</span>
 </pre>
 </div>
 </div>
@@ -301,7 +303,7 @@ Completed sub-query from 2019-07-19 to 2019-07-20
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prep_data_for_modeling</span><span class="p">(</span><span class="n">db_path</span><span class="o">=</span><span class="s2">&quot;../data/raw/statcast_pitches.db&quot;</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prep_data_for_modeling</span><span class="p">(</span><span class="n">db_path</span><span class="o">=</span><span class="s2">&quot;/tmp/statcast_pitches.db&quot;</span><span class="p">,</span>
                        <span class="n">years</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2019&quot;</span><span class="p">],</span>
                        <span class="n">train_test_split_by</span><span class="o">=</span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
                        <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;/tmp&quot;</span><span class="p">)</span>
@@ -317,32 +319,83 @@ Completed sub-query from 2019-07-19 to 2019-07-20
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>querying db at ../data/raw/statcast_pitches.db now.
-In this dataset, there are 2429 total games.
-There are 2804 ineligible starts in the dataset (either &#39;openers&#39; or an NL team).
-There are 2054 total eligible game-pitcher combinations in this dataset.
+<pre>querying db at /tmp/statcast_pitches.db now.
+In this dataset, there are 145 total games.
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/pandas/core/indexing.py:845: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[key] = _infer_fill_value(value)
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/pandas/core/indexing.py:966: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[item] = s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>There are 172 ineligible starts in the dataset (either &#39;openers&#39; or an NL team).
+There are 118 total eligible game-pitcher combinations in this dataset.
 Just processed 0th start.
-Just processed 100th start.
-Just processed 200th start.
-Just processed 300th start.
-Just processed 400th start.
-Just processed 500th start.
-Just processed 600th start.
-Just processed 700th start.
-Just processed 800th start.
-Just processed 900th start.
-Just processed 1000th start.
-Just processed 1100th start.
-Just processed 1200th start.
-Just processed 1300th start.
-Just processed 1400th start.
-Just processed 1500th start.
-Just processed 1600th start.
-Just processed 1700th start.
-Just processed 1800th start.
-Just processed 1900th start.
-Just processed 2000th start.
-There are 229 unique pitcher&#39;s in this dataset
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/collinprather/Documents/Baltimore-Orioles/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:193: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  game_df[&#34;pitcher_team&#34;] = game_df.apply(lambda row: add_pitcher_team(row), axis=1)
+/Users/collinprather/Documents/Baltimore-Orioles/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:207: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  game_team_pitcher_df[&#34;events&#34;] = game_team_pitcher_df[&#34;events&#34;].fillna(&#34;&#34;)
+/Users/collinprather/Documents/Baltimore-Orioles/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:210: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  game_team_pitcher_df[&#34;post_bat_score&#34;] = game_team_pitcher_df[&#34;post_bat_score&#34;].shift(-1).fillna(method=&#34;ffill&#34;)
+/Users/collinprather/Documents/Baltimore-Orioles/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:214: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  game_team_pitcher_df[f&#34;post_on_{base}b&#34;] = game_team_pitcher_df[f&#34;on_{base}b&#34;].fillna(0).apply(lambda x: 1 if x&gt;0 else 0).shift(-1).fillna(method=&#34;ffill&#34;)
+/Users/collinprather/Documents/Baltimore-Orioles/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:217: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  game_team_pitcher_df[&#34;post_opposite_hand&#34;] = (game_team_pitcher_df[&#34;stand&#34;]!=game_team_pitcher_df[&#34;p_throws&#34;]).astype(int).shift(-1).fillna(method=&#34;ffill&#34;)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Just processed 100th start.
+There are 60 unique pitcher&#39;s in this dataset
 [&#39;2019&#39;] data ready for modeling and saved at /tmp.
 </pre>
 </div>
@@ -392,7 +445,8 @@ mappers_2019_2019.pkl        test_2019.csv
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h2 id="testing">testing<a class="anchor-link" href="#testing"> </a></h2>
+<h2 id="Sanity-Check">Sanity Check<a class="anchor-link" href="#Sanity-Check"> </a></h2><p>To make sure there is no crazy data leakage, I make sure that a baseline logistic regression classifier gets a recall score of &lt; 0.5</p>
+
 </div>
 </div>
 </div>
@@ -405,7 +459,7 @@ mappers_2019_2019.pkl        test_2019.csv
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">recall_score</span>
 </pre></div>
 
     </div>
@@ -423,24 +477,6 @@ mappers_2019_2019.pkl        test_2019.csv
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/tmp/train_2019.csv&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># feature_cols.remove(&quot;end_inning&quot;)</span>
-<span class="n">feature_cols</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;postouts&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -476,7 +512,7 @@ mappers_2019_2019.pkl        test_2019.csv
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-<span class="n">log_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">log_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
 </pre></div>
 
     </div>
@@ -488,16 +524,17 @@ mappers_2019_2019.pkl        test_2019.csv
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
-
-<div class="output_text output_subarea output_execute_result">
-<pre>LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
-                   intercept_scaling=1, l1_ratio=None, max_iter=100,
-                   multi_class=&#39;auto&#39;, n_jobs=None, penalty=&#39;l2&#39;,
-                   random_state=None, solver=&#39;lbfgs&#39;, tol=0.0001, verbose=0,
-                   warm_start=False)</pre>
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -528,12 +565,12 @@ mappers_2019_2019.pkl        test_2019.csv
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>              precision    recall  f1-score   support
 
-         0.0       0.97      0.99      0.98     33873
-         1.0       0.66      0.21      0.32      1529
+         0.0       0.97      0.99      0.98      1908
+         1.0       0.59      0.19      0.29        84
 
-    accuracy                           0.96     35402
-   macro avg       0.81      0.60      0.65     35402
-weighted avg       0.95      0.96      0.95     35402
+    accuracy                           0.96      1992
+   macro avg       0.78      0.59      0.63      1992
+weighted avg       0.95      0.96      0.95      1992
 
 </pre>
 </div>
@@ -552,57 +589,16 @@ weighted avg       0.95      0.96      0.95     35402
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">coef</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">feature_cols</span><span class="p">,</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">coef</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">0.5</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>post_bat_score: -0.2191
-score_diff: -0.0956
-inning: -1.6752
-cum_sb_ratio: -0.1784
-times_thru_order: 2.6153
-post_total_runners: 0.3159
-tying_run_on: -0.0041
-pitch_total: 2.2531
-post_opposite_hand: -0.0808
-walk: -0.0201
-walk_cumsum: -0.0988
-strikeout_cumsum: -0.0804
-home_run_cumsum: 0.3591
-bases_cumsum: -0.3573
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="problem-appears-to-be-with-postouts/end_inning!">problem appears to be with <code>postouts</code>/<code>end_inning</code>!<a class="anchor-link" href="#problem-appears-to-be-with-postouts/end_inning!"> </a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Check to see how many co-occurences there are of <code>postouts==3</code> and <code>pulled==1</code>?</p>
-
-</div>
-</div>
-</div>
 </div>
  
 

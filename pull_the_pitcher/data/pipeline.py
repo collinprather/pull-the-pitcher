@@ -97,23 +97,26 @@ def encode_embedding_cols(train, test, cols=["game_pk", "game_type", "pitcher", 
     return train, test, mappers
 
 # Cell
-at_bat_aggs = {"balls": "max",
-                "strikes": "max",
-                "pitch_number": "max",
-                "post_bat_score": last,
-                "post_fld_score": last,
-                "events": "max",
-                "postouts": last,
-                "post_on_1b": last,
-                "post_on_2b": last,
-                "post_on_3b": last,
-                "game_type": last,
-                "home_team": last,
-                "away_team": last,
-                "inning": last,
-                "inning_topbot": last,
-               "post_opposite_hand": last,
-               "game_year": last}
+at_bat_aggs = {
+    "balls": "max",
+    "strikes": "max",
+    "pitch_number": "max",
+    "post_bat_score": last,
+    "post_fld_score": last,
+    "events": "max",
+    "postouts": last,
+    "post_on_1b": last,
+    "post_on_2b": last,
+    "post_on_3b": last,
+    "game_type": last,
+    "home_team": last,
+    "away_team": last,
+    "inning": last,
+    "inning_topbot": last,
+    "post_opposite_hand": last,
+    "game_year": last,
+    "pitcher_team": last
+}
 
 # Cell
 
@@ -195,7 +198,7 @@ def prep_data_for_modeling(
     test = stack_into_df(test_starts)
 
     # standard scaling (mean of 0, sd of 1)
-    train, test, scaler = scale(train, test)
+#     train, test, scaler = scale(train, test)
 
     # encoding categoricals for embeddings later
     train, test, mappers = encode_embedding_cols(train, test, cols=["pitcher"])
