@@ -40,6 +40,6 @@ modules = ["data/acquisition.py",
 
 doc_url = "https://collinprather.github.io/pull-the-pitcher/"
 
-git_url = "https://github.com/collinprather/pull_the_pitcher/tree/master/"
+git_url = "https://github.com/collinprather/pull-the-pitcher"
 
 def custom_doc_links(name): return None

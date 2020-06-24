@@ -5,8 +5,8 @@ title: Data Acquisition
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "This is a script which invokes `pybaseball`'s <a href='https://github.com/jldbc/pybaseball#statcast-pull-advanced-metrics-from-major-league-baseballs-statcast-system'>`statcast()`</a> function to retrieve pitch-level data from statcast."
-description: "This is a script which invokes `pybaseball`'s <a href='https://github.com/jldbc/pybaseball#statcast-pull-advanced-metrics-from-major-league-baseballs-statcast-system'>`statcast()`</a> function to retrieve pitch-level data from statcast."
+summary: "This is a script which invokes `pybaseball`'s <a href='https://baseballsavant.mlb.com/csv-docs'>`statcast()`](https://github.com/jldbc/pybaseball#statcast-pull-advanced-metrics-from-major-league-baseballs-statcast-system) function to retrieve pitch-level data from [statcast</a>."
+description: "This is a script which invokes `pybaseball`'s <a href='https://baseballsavant.mlb.com/csv-docs'>`statcast()`](https://github.com/jldbc/pybaseball#statcast-pull-advanced-metrics-from-major-league-baseballs-statcast-system) function to retrieve pitch-level data from [statcast</a>."
 ---
 <!--
 
@@ -45,7 +45,7 @@ description: "This is a script which invokes `pybaseball`'s <a href='https://git
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="query_statcast" class="doc_header"><code>query_statcast</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_statcast</code>(<strong><code>start_dt</code></strong>:"Beginning date to pull data from"=<em><code>None</code></em>, <strong><code>end_dt</code></strong>:"End date to pull data from"=<em><code>None</code></em>, <strong><code>team</code></strong>:"Abbreviation for team of interest"=<em><code>None</code></em>, <strong><code>verbose</code></strong>:"Whether or not to print verbose updates"=<em><code>True</code></em>, <strong><code>output_type</code></strong>:"What format to save data in"=<em><code>'db'</code></em>, <strong><code>overwrite</code></strong>:"Whether or not to overwrite the db table if it already exists"=<em><code>True</code></em>, <strong><code>output_path</code></strong>:"path to location that data should be saved"=<em><code>'.'</code></em>)</p>
+<h4 id="query_statcast" class="doc_header"><code>query_statcast</code><a href="https://github.com/collinprather/pull-the-pitcherpull_the_pitcher/data/acquisition.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_statcast</code>(<strong><code>start_dt</code></strong>:"Beginning date to pull data from"=<em><code>None</code></em>, <strong><code>end_dt</code></strong>:"End date to pull data from"=<em><code>None</code></em>, <strong><code>team</code></strong>:"Abbreviation for team of interest"=<em><code>None</code></em>, <strong><code>verbose</code></strong>:"Whether or not to print verbose updates"=<em><code>True</code></em>, <strong><code>output_type</code></strong>:"What format to save data in"=<em><code>'db'</code></em>, <strong><code>overwrite</code></strong>:"Whether or not to overwrite the db table if it already exists"=<em><code>True</code></em>, <strong><code>output_path</code></strong>:"path to location that data should be saved"=<em><code>'.'</code></em>)</p>
 </blockquote>
 <p>Callable from the command-line or in Python. Pulls pitch-level MLB data from <a href="https://baseballsavant.mlb.com/statcast_search">statcast</a>.
 Saves as either a sqlite db file, or csv.</p>
@@ -138,7 +138,7 @@ Saves as either a sqlite db file, or csv.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="query_db" class="doc_header"><code>query_db</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L72" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_db</code>(<strong><code>db_path</code></strong>:<code>str</code>=<em><code>'../data/raw/statcast_pitches.db'</code></em>, <strong><code>year</code></strong>:<code>str</code>=<em><code>'2019'</code></em>, <strong><code>columns</code></strong>:<code>str</code>=<em>`'</em>'<code>*, **</code>limit<code>**:</code>int<code>=*</code>None<code>*, **</code>verbose<code>**:</code>bool<code>=*</code>True`*)</p>
+<h4 id="query_db" class="doc_header"><code>query_db</code><a href="https://github.com/collinprather/pull-the-pitcherpull_the_pitcher/data/acquisition.py#L72" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_db</code>(<strong><code>db_path</code></strong>:<code>str</code>=<em><code>'../data/raw/statcast_pitches.db'</code></em>, <strong><code>year</code></strong>:<code>str</code>=<em><code>'2019'</code></em>, <strong><code>columns</code></strong>:<code>str</code>=<em>`'</em>'<code>*, **</code>limit<code>**:</code>int<code>=*</code>None<code>*, **</code>verbose<code>**:</code>bool<code>=*</code>True`*)</p>
 </blockquote>
 <p>Queries a sqlite db file. Assumes that it's been created by <a href="/pull-the-pitcher/data_acquisition#query_statcast"><code>query_statcast</code></a>.
 Only queries for a single year at a time.</p>
