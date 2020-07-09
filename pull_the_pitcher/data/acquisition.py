@@ -7,6 +7,7 @@ from pybaseball import statcast
 import pandas as pd
 from fastscript import *
 import sqlite3
+from os import path
 
 # Cell
 
@@ -23,7 +24,7 @@ def query_statcast(
     overwrite: Param(
         help="Whether or not to overwrite the db table if it already exists",
         type=bool_arg,
-    ) = True,
+    ) = False,
     output_path: Param(
         help="path to location that data should be saved", type=str
     ) = ".",
@@ -38,7 +39,7 @@ def query_statcast(
         - `team`: `str`, abbreviation for team of interest = None
         - `verbose`: `bool`, Whether or not to print verbose updates
         - `output_type`: `str`, What format to save data in (must be one of {'db', 'csv'}) = 'db'
-        - `overwrite`: `bool`, Whether or not to overwrite the db table if it already exists = True
+        - `overwrite`: `bool`, Whether or not to overwrite the db table if it already exists = False
         - `output_path`: `str`, Path to the location that the data should be saved at = '.'
 
     * outputs:
@@ -48,18 +49,38 @@ def query_statcast(
     if output_type not in ("db", "csv"):
         raise ValueError("output_type must be one of {'db', 'csv'}")
 
-    # pulling data from statcast
-    data = statcast(start_dt=start_dt, end_dt=end_dt, team=team, verbose=verbose)
-
     if output_type == "db":
-        # creating db
+        # creating db connection
         conn = sqlite3.connect(f"{output_path}/statcast_pitches.db")
-        if overwrite:
-            conn.execute(f"DROP TABLE IF EXISTS statcast_{start_dt[:4]}")
+
+        # Checking if year is already in db
+        cursor = conn.execute(f"select name from sqlite_master where type='table' and name='statcast_{start_dt[:4]}'")
+
+        # if table exists in db
+        if cursor.fetchone():
+            if overwrite:
+                conn.execute(f"DROP TABLE IF EXISTS statcast_{start_dt[:4]}")
+            else:
+                # don't want to overwrite, pop out of function
+                print(f"Table named 'statcast_{start_dt[:4]}' already exists in db saved at `{output_path}/statcast_{start_dt[:4]}`.")
+                return None
+
+        # if table does not already exist in db or it was just dropped
+        # pulling data from statcast
+        data = statcast(start_dt=start_dt, end_dt=end_dt, team=team, verbose=verbose)
         data.to_sql(f"statcast_{start_dt[:4]}", conn)
         conn.close()
 
+    # output type is csv
     else:
+        # Checking if file is already saved as csv
+        if path.exists(f"{output_path}/statcast_{start_dt[:4]}.csv"):
+            print(f"File named `{output_path}/statcast_{start_dt[:4]}.csv` already exists.")
+            return None
+
+        # pulling data from statcast
+        data = statcast(start_dt=start_dt, end_dt=end_dt, team=team, verbose=verbose)
+
         # saving to csv
         data.to_csv(f"{output_path}/statcast_{start_dt[:4]}.csv", index=False)
 

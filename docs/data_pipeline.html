@@ -121,7 +121,7 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="scale" class="doc_header"><code>scale</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L50" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>scale</code>(<strong><code>train</code></strong>:<code>DataFrame</code>, <strong><code>test</code></strong>:<code>DataFrame</code>)</p>
+<h4 id="scale" class="doc_header"><code>scale</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L50" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>scale</code>(<strong><code>train</code></strong>:<code>DataFrame</code>, <strong><code>val</code></strong>:<code>DataFrame</code>)</p>
 </blockquote>
 
 </div>
@@ -176,7 +176,7 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="encode_embedding_cols" class="doc_header"><code>encode_embedding_cols</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L79" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>encode_embedding_cols</code>(<strong><code>train</code></strong>, <strong><code>test</code></strong>, <strong><code>cols</code></strong>=<em><code>['game_pk', 'game_type', 'pitcher', 'pitcher_team_year']</code></em>)</p>
+<h4 id="encode_embedding_cols" class="doc_header"><code>encode_embedding_cols</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L79" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>encode_embedding_cols</code>(<strong><code>train</code></strong>, <strong><code>val</code></strong>, <strong><code>cols</code></strong>=<em><code>['game_pk', 'game_type', 'pitcher', 'pitcher_team_year']</code></em>)</p>
 </blockquote>
 
 </div>
@@ -214,7 +214,41 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="prep_data_for_modeling" class="doc_header"><code>prep_data_for_modeling</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L124" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>prep_data_for_modeling</code>(<strong><code>db_path</code></strong>:"Path to db with statcast data"=<em><code>'./data/raw/statcast_pitches.db'</code></em>, <strong><code>years</code></strong>:"Year of statcast data to process"=<em><code>['2019']</code></em>, <strong><code>verbose</code></strong>:"Whether to print out updates on processing"=<em><code>True</code></em>, <strong><code>train_test_split_by</code></strong>:"How to split into train/test sets. One of {'start', 'year'}."=<em><code>'start'</code></em>, <strong><code>test_size</code></strong>:"Percent of data to allocate to test set"=<em><code>0.25</code></em>, <strong><code>output_path</code></strong>:"Path to save processed csv files"=<em><code>'./data/processed/'</code></em>)</p>
+<h4 id="add_val_flags" class="doc_header"><code>add_val_flags</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L123" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>add_val_flags</code>(<strong><code>ds_flags</code></strong>:<code>List</code>[<code>int</code>])</p>
+</blockquote>
+<p>Adds some 1's to the list of dataset flags to move
+a random 15% of the training set into the validation
+set</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="prep_data_for_modeling" class="doc_header"><code>prep_data_for_modeling</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L142" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>prep_data_for_modeling</code>(<strong><code>db_path</code></strong>:"Path to db with statcast data"=<em><code>'./data/raw/statcast_pitches.db'</code></em>, <strong><code>years</code></strong>:"Year of statcast data to process"=<em><code>['2019']</code></em>, <strong><code>verbose</code></strong>:"Whether to print out updates on processing"=<em><code>True</code></em>, <strong><code>train_test_split_by</code></strong>:"How to split into train/test sets. One of {'start', 'year'}."=<em><code>'start'</code></em>, <strong><code>test_size</code></strong>:"Percent of data to allocate to test set"=<em><code>0.25</code></em>, <strong><code>output_path</code></strong>:"Path to save processed csv files"=<em><code>'./data/processed/'</code></em>)</p>
 </blockquote>
 
 </div>
@@ -281,11 +315,8 @@ Completed sub-query from 2019-07-19 to 2019-07-20
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-blue-fg">com.apple.launchd.82pLsk9OX7</span> statcast_pitches.db
-<span class="ansi-blue-fg">com.google.Keystone</span>          t.py
-mappers_2019_2019.pkl        test_2019.csv
-<span class="ansi-blue-fg">powerlog</span>                     train_2019.csv
-<span class="ansi-blue-fg">recsim</span>
+<pre><span class="ansi-blue-fg">com.apple.launchd.xxqzRTgtnv</span> <span class="ansi-blue-fg">powerlog</span>
+<span class="ansi-blue-fg">com.google.Keystone</span>          statcast_pitches.db
 </pre>
 </div>
 </div>
@@ -395,7 +426,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Just processed 100th start.
-There are 60 unique pitcher&#39;s in this dataset
+There are 55 unique pitcher&#39;s in this dataset
 [&#39;2019&#39;] data ready for modeling and saved at /tmp.
 </pre>
 </div>
@@ -427,11 +458,11 @@ There are 60 unique pitcher&#39;s in this dataset
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-blue-fg">com.apple.launchd.82pLsk9OX7</span> statcast_pitches.db
-<span class="ansi-blue-fg">com.google.Keystone</span>          t.py
-mappers_2019_2019.pkl        test_2019.csv
-<span class="ansi-blue-fg">powerlog</span>                     train_2019.csv
-<span class="ansi-blue-fg">recsim</span>
+<pre><span class="ansi-blue-fg">com.apple.launchd.xxqzRTgtnv</span> statcast_pitches.db
+<span class="ansi-blue-fg">com.google.Keystone</span>          test_2019.csv
+mappers_2019_2019.pkl        train_2019.csv
+<span class="ansi-blue-fg">powerlog</span>                     val_2019.csv
+scaler_2019_2019.pkl
 </pre>
 </div>
 </div>
@@ -519,27 +550,6 @@ mappers_2019_2019.pkl        test_2019.csv
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
-STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
-
-Increase the number of iterations (max_iter) or scale the data as shown in:
-    https://scikit-learn.org/stable/modules/preprocessing.html
-Please also refer to the documentation for alternative solver options:
-    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
-  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -565,12 +575,12 @@ Please also refer to the documentation for alternative solver options:
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>              precision    recall  f1-score   support
 
-         0.0       0.97      0.99      0.98      1908
-         1.0       0.59      0.19      0.29        84
+         0.0       0.97      1.00      0.98      1645
+         1.0       0.71      0.28      0.40        72
 
-    accuracy                           0.96      1992
-   macro avg       0.78      0.59      0.63      1992
-weighted avg       0.95      0.96      0.95      1992
+    accuracy                           0.97      1717
+   macro avg       0.84      0.64      0.69      1717
+weighted avg       0.96      0.97      0.96      1717
 
 </pre>
 </div>
