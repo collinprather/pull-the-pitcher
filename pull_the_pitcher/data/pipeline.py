@@ -178,8 +178,8 @@ def prep_data_for_modeling(
         train_year = test_year = years
     elif train_test_split_by == "year":
         # identifying year of test starts
-        test_year = list(np.sort(df["game_date"].str[:4].unique())[-1])
-        train_year = list(set(years).difference(set([test_year])))
+        test_year = [np.sort(df["game_date"].str[:4].unique())[-1]]
+        train_year = list(set(years).difference(set(test_year)))
         ds_flags = [
             2 if str(y) == test_year[0] else 0 for (g, p, y) in games_pitchers_years
         ]

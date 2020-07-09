@@ -37,4 +37,4 @@ get_data:
 	query_statcast --start_dt 2019-03-15 --end_dt 2019-11-15 --output_type db --output_path ./data/raw
     
 dataset: get_data
-	prep_data_for_modeling --db_path ./data/raw/statcast_pitches.db --train_test_split_by year --output_path ./data/processed
+	prep_data_for_modeling --db_path ./data/raw/statcast_pitches.db --years 2016 2017 2018 2019 --train_test_split_by year --output_path ./data/processed

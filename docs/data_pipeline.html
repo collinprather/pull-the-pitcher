@@ -268,7 +268,8 @@ set</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> query_statcast --start_dt <span class="m">2019</span>-07-07 --end_dt <span class="m">2019</span>-07-20 --output_type db --output_path /tmp
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> query_statcast --start_dt <span class="m">2018</span>-07-07 --end_dt <span class="m">2018</span>-07-20 --output_type db --output_path /tmp
+<span class="o">!</span> query_statcast --start_dt <span class="m">2019</span>-07-07 --end_dt <span class="m">2019</span>-07-20 --output_type db --output_path /tmp
 </pre></div>
 
     </div>
@@ -281,10 +282,8 @@ set</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>This is a large query, it may take a moment to complete
-Completed sub-query from 2019-07-07 to 2019-07-12
-Completed sub-query from 2019-07-13 to 2019-07-18
-Completed sub-query from 2019-07-19 to 2019-07-20
+<pre>Table named &#39;statcast_2018&#39; already exists in db saved at `/tmp/statcast_2018`.
+Table named &#39;statcast_2019&#39; already exists in db saved at `/tmp/statcast_2019`.
 </pre>
 </div>
 </div>
@@ -315,8 +314,11 @@ Completed sub-query from 2019-07-19 to 2019-07-20
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-blue-fg">com.apple.launchd.xxqzRTgtnv</span> <span class="ansi-blue-fg">powerlog</span>
-<span class="ansi-blue-fg">com.google.Keystone</span>          statcast_pitches.db
+<pre><span class="ansi-blue-fg">com.apple.launchd.xxqzRTgtnv</span> statcast_pitches.db
+<span class="ansi-blue-fg">com.google.Keystone</span>          test_2019.csv
+mappers_2018_2019.pkl        train_2018.csv
+<span class="ansi-blue-fg">powerlog</span>                     val_2018.csv
+scaler_2018_2019.pkl
 </pre>
 </div>
 </div>
@@ -335,8 +337,8 @@ Completed sub-query from 2019-07-19 to 2019-07-20
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">prep_data_for_modeling</span><span class="p">(</span><span class="n">db_path</span><span class="o">=</span><span class="s2">&quot;/tmp/statcast_pitches.db&quot;</span><span class="p">,</span>
-                       <span class="n">years</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2019&quot;</span><span class="p">],</span>
-                       <span class="n">train_test_split_by</span><span class="o">=</span><span class="s2">&quot;start&quot;</span><span class="p">,</span>
+                       <span class="n">years</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2018&quot;</span><span class="p">,</span> <span class="s2">&quot;2019&quot;</span><span class="p">],</span>
+                       <span class="n">train_test_split_by</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
                        <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;/tmp&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -351,7 +353,8 @@ Completed sub-query from 2019-07-19 to 2019-07-20
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>querying db at /tmp/statcast_pitches.db now.
-In this dataset, there are 145 total games.
+querying db at /tmp/statcast_pitches.db now.
+In this dataset, there are 290 total games.
 </pre>
 </div>
 </div>
@@ -378,8 +381,8 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 172 ineligible starts in the dataset (either &#39;openers&#39; or an NL team).
-There are 118 total eligible game-pitcher combinations in this dataset.
+<pre>There are 339 ineligible starts in the dataset (either &#39;openers&#39; or an NL team).
+There are 241 total eligible game-pitcher combinations in this dataset.
 Just processed 0th start.
 </pre>
 </div>
@@ -426,8 +429,9 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Just processed 100th start.
-There are 55 unique pitcher&#39;s in this dataset
-[&#39;2019&#39;] data ready for modeling and saved at /tmp.
+Just processed 200th start.
+There are 72 unique pitcher&#39;s in this dataset
+[&#39;2018&#39;, &#39;2019&#39;] data ready for modeling and saved at /tmp.
 </pre>
 </div>
 </div>
@@ -460,9 +464,9 @@ There are 55 unique pitcher&#39;s in this dataset
 <div class="output_subarea output_stream output_stdout output_text">
 <pre><span class="ansi-blue-fg">com.apple.launchd.xxqzRTgtnv</span> statcast_pitches.db
 <span class="ansi-blue-fg">com.google.Keystone</span>          test_2019.csv
-mappers_2019_2019.pkl        train_2019.csv
-<span class="ansi-blue-fg">powerlog</span>                     val_2019.csv
-scaler_2019_2019.pkl
+mappers_2018_2019.pkl        train_2018.csv
+<span class="ansi-blue-fg">powerlog</span>                     val_2018.csv
+scaler_2018_2019.pkl
 </pre>
 </div>
 </div>
@@ -507,7 +511,7 @@ scaler_2019_2019.pkl
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/tmp/train_2019.csv&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/tmp/train_2018.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -575,12 +579,12 @@ scaler_2019_2019.pkl
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>              precision    recall  f1-score   support
 
-         0.0       0.97      1.00      0.98      1645
-         1.0       0.71      0.28      0.40        72
+         0.0       0.97      1.00      0.98      2358
+         1.0       0.84      0.25      0.39       104
 
-    accuracy                           0.97      1717
-   macro avg       0.84      0.64      0.69      1717
-weighted avg       0.96      0.97      0.96      1717
+    accuracy                           0.97      2462
+   macro avg       0.90      0.62      0.68      2462
+weighted avg       0.96      0.97      0.96      2462
 
 </pre>
 </div>
