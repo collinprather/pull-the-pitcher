@@ -85,6 +85,23 @@ Saves as either a sqlite db file, or csv.</p>
 
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> rm /tmp/*.db /tmp/*.pkl /tmp/*.csv
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># output type must be db or csv</span>
 <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
     <span class="n">query_statcast</span><span class="p">(</span><span class="n">output_type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -237,6 +254,24 @@ querying db at /tmp/statcast_pitches.db now.
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># more clean-up</span>
+<span class="o">!</span> rm /tmp/*.db /tmp/*.pkl /tmp/*.csv
+</pre></div>
+
+    </div>
 </div>
 </div>
 
