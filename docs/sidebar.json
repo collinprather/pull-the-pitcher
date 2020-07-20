@@ -4,6 +4,7 @@
     "Data Acquisition": "/data_acquisition",
     "Data Processing": "/data_processing",
     "Data Pipeline": "/data_pipeline",
-    "Metrics": "/metrics"
+    "Metrics": "/metrics",
+    "Inference": "/inference"
   }
 }

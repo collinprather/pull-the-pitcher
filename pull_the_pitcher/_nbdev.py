@@ -37,7 +37,8 @@ index = {"query_statcast": "00_data_acquisition.ipynb",
 modules = ["data/acquisition.py",
            "data/processing.py",
            "data/pipeline.py",
-           "metrics.py"]
+           "metrics.py",
+           "inference.py"]
 
 doc_url = "https://collinprather.github.io/pull-the-pitcher/"
 
