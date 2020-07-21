@@ -52,15 +52,3 @@ services:
     ports:
       - "8501:8501"
 
-  db:
-    image: "postgres:12"
-    container_name: "postgres"
-    ports:
-      - "5432:5432"
-    volumes:
-      - ptp_data:/var/lib/postgresql/data
-    env_file:
-      - ./.env
-
-volumes:
-  ptp_data:    
