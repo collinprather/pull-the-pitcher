@@ -1,4 +1,5 @@
 data/*
+notebooks/pull_the_pitcher
 
 *.bak
 .gitattributes
