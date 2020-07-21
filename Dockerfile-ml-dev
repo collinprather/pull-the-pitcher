@@ -1,0 +1,12 @@
+FROM manifoldai/orbyter-ml-dev:2.0
+
+WORKDIR /pull-the-pitcher
+
+# copy over requirements
+COPY requirements.txt ./requirements.txt
+
+# installing required packages
+RUN pip install -r requirements.txt --no-cache-dir
+
+# copying all app files to image
+COPY . . 

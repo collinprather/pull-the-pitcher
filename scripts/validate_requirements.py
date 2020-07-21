@@ -2,7 +2,7 @@ from fastscript import *
 
 @call_parse
 def validate_requirements(settings_path: Param("Path to settings.ini in root directory", str)="./settings.ini",
-                          requirements_path: Param("Path to requirements.txt file", str)="./docker/requirements.txt",
+                          requirements_path: Param("Path to requirements.txt file", str)="./requirements.txt",
                           verbose: Param("Level of verbosity", bool)=False):
     """
     Ensures that the requirements found in the root-level settings.ini file match those found in the 

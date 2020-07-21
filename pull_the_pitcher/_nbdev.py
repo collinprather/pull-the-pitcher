@@ -2,7 +2,9 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"query_statcast": "00_data_acquisition.ipynb",
+index = {"load_postgres_env": "00_data_acquisition.ipynb",
+         "load_postgres_engine": "00_data_acquisition.ipynb",
+         "query_statcast": "00_data_acquisition.ipynb",
          "query_db": "00_data_acquisition.ipynb",
          "AL_teams": "01_data_processing.ipynb",
          "add_pitcher_team": "01_data_processing.ipynb",

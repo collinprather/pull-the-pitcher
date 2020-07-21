@@ -1,4 +1,6 @@
 # raw sqlite db files
 *.db
 
+./data/*
+
 .env
