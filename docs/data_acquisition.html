@@ -45,7 +45,7 @@ description: "This is a script which invokes `pybaseball`'s <a href='https://git
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_postgres_env" class="doc_header"><code>load_postgres_env</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L16" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_postgres_env</code>()</p>
+<h4 id="load_postgres_env" class="doc_header"><code>load_postgres_env</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_postgres_env</code>()</p>
 </blockquote>
 
 </div>
@@ -69,7 +69,7 @@ description: "This is a script which invokes `pybaseball`'s <a href='https://git
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_postgres_engine" class="doc_header"><code>load_postgres_engine</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_postgres_engine</code>()</p>
+<h4 id="load_postgres_engine" class="doc_header"><code>load_postgres_engine</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L28" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_postgres_engine</code>()</p>
 </blockquote>
 
 </div>
@@ -100,10 +100,42 @@ description: "This is a script which invokes `pybaseball`'s <a href='https://git
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="query_statcast" class="doc_header"><code>query_statcast</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L38" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_statcast</code>(<strong><code>start_dt</code></strong>:"Beginning date to pull data from"=<em><code>None</code></em>, <strong><code>end_dt</code></strong>:"End date to pull data from"=<em><code>None</code></em>, <strong><code>team</code></strong>:"Abbreviation for team of interest"=<em><code>None</code></em>, <strong><code>verbose</code></strong>:"Whether or not to print verbose updates"=<em><code>True</code></em>, <strong><code>if_exists</code></strong>:"How to behave if the table already exists."=<em><code>'fail'</code></em>)</p>
+<h4 id="load_statcast_db_schema" class="doc_header"><code>load_statcast_db_schema</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L39" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_statcast_db_schema</code>()</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="query_statcast" class="doc_header"><code>query_statcast</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L137" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_statcast</code>(<strong><code>start_dt</code></strong>:"Beginning date to pull data from"=<em><code>None</code></em>, <strong><code>end_dt</code></strong>:"End date to pull data from"=<em><code>None</code></em>, <strong><code>team</code></strong>:"Abbreviation for team of interest"=<em><code>None</code></em>, <strong><code>verbose</code></strong>:"Whether or not to print verbose updates"=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Callable from the command-line or in Python. Pulls pitch-level MLB data from <a href="https://baseballsavant.mlb.com/statcast_search">statcast</a>.
-Saves to a pre-instantiated Postgres DB in AWS RDS.</p>
+Saves to a pre-instantiated Postgres DB in AWS RDS.
+By default, drops the table.</p>
 <ul>
 <li><p>inputs:</p>
 <ul>
@@ -111,12 +143,6 @@ Saves to a pre-instantiated Postgres DB in AWS RDS.</p>
 <li><code>end_dt</code>: <code>str</code>, End date to pull data from = None</li>
 <li><code>team</code>: <code>str</code>, abbreviation for team of interest = None</li>
 <li><code>verbose</code>: <code>bool</code>, Whether or not to print verbose updates</li>
-<li><code>if_exists</code>: <code>str</code>, How to behave if the table already exists.<ul>
-<li><code>'fail'</code>: Raise a ValueError.</li>
-<li><code>'replace'</code>: Drop the table before inserting new values.</li>
-<li><code>'append'</code>: Insert new values to the existing table.</li>
-</ul>
-</li>
 </ul>
 </li>
 <li><p>outputs:</p>
@@ -152,7 +178,6 @@ Saves to a pre-instantiated Postgres DB in AWS RDS.</p>
     <span class="n">start_dt</span><span class="o">=</span><span class="n">start_dt</span><span class="p">,</span>
     <span class="n">end_dt</span><span class="o">=</span><span class="n">end_dt</span><span class="p">,</span>
     <span class="n">team</span><span class="o">=</span><span class="s2">&quot;BOS&quot;</span><span class="p">,</span>
-    <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># ensuring David Price threw 99 pitches</span>
@@ -161,6 +186,7 @@ Saves to a pre-instantiated Postgres DB in AWS RDS.</p>
     <span class="n">result</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;select count(1)</span>
 <span class="s2">                                   from statcast_2019</span>
 <span class="s2">                                   where player_name = &#39;David Price&#39;&quot;&quot;&quot;</span><span class="p">)</span>
+
 <span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">first</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">99</span>
 </pre></div>
 
@@ -189,7 +215,7 @@ Saves to a pre-instantiated Postgres DB in AWS RDS.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="query_db" class="doc_header"><code>query_db</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_db</code>(<strong><code>year</code></strong>:<code>str</code>=<em><code>'2019'</code></em>, <strong><code>columns</code></strong>:<code>str</code>=<em>`'</em>'<code>*, **</code>limit<code>**:</code>int<code>=*</code>None<code>*, **</code>verbose<code>**:</code>bool<code>=*</code>True`*)</p>
+<h4 id="query_db" class="doc_header"><code>query_db</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/acquisition.py#L192" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>query_db</code>(<strong><code>year</code></strong>:<code>str</code>=<em><code>'2019'</code></em>, <strong><code>columns</code></strong>:<code>str</code>=<em>`'</em>'<code>*, **</code>limit<code>**:</code>int<code>=*</code>None<code>*, **</code>verbose<code>**:</code>bool<code>=*</code>True`*)</p>
 </blockquote>
 <p>Queries a sqlite db file. Assumes that it's been created by <a href="/pull-the-pitcher/data_acquisition#query_statcast"><code>query_statcast</code></a>.
 Only queries for a single year at a time.</p>
@@ -231,16 +257,11 @@ Only queries for a single year at a time.</p>
 <span class="k">assert</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;away_team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;BOS&quot;</span>
 
 <span class="c1"># checking consistent rows and columns (extra column because index is included)</span>
-<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">339</span><span class="p">,</span> <span class="mi">91</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">339</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
 
 <span class="c1"># year not present in db gives empty DataFrame</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">query_db</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="s2">&quot;2012&quot;</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span>
-
-<span class="c1"># # also testing that csv file is of expected size</span>
-<span class="c1"># df = pd.read_csv(f&quot;{output_path}/statcast_{start_dt[:4]}.csv&quot;)</span>
-<span class="c1"># assert df.shape == (4457, 90)</span>
-
 
 <span class="c1"># clean up: removing table, and asserting the correct error</span>
 <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
