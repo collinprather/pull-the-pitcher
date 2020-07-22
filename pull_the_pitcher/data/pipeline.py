@@ -141,9 +141,9 @@ def add_val_flags(ds_flags: List[int]):
 
 @call_parse
 def prep_data_for_modeling(
-#     db_path: Param(
-#         help="Path to db with statcast data", type=str
-#     ) = "./data/raw/statcast_pitches.db",
+    db_path: Param(
+        help="Path to db with statcast data", type=str
+    ) = "./data/raw/statcast_pitches.db",
     years: Param(help="Year of statcast data to process", type=str, nargs="+") = [
         "2019"
     ],
@@ -161,7 +161,7 @@ def prep_data_for_modeling(
     # getting all dfs from all years into a single df
     dfs = []
     for year in years:
-        df_year = query_db(year=year, verbose=verbose)
+        df_year = query_db(db_path, year, verbose=verbose)
         dfs.append(df_year)
     df = pd.concat(dfs, axis=0)
 
@@ -178,7 +178,7 @@ def prep_data_for_modeling(
         train_year = test_year = years
     elif train_test_split_by == "year":
         # identifying year of test starts
-        test_year = [np.sort(df["game_date"].astype(str).str[:4].unique())[-1]]
+        test_year = [np.sort(df["game_date"].str[:4].unique())[-1]]
         train_year = list(set(years).difference(set(test_year)))
         ds_flags = [
             2 if str(y) == test_year[0] else 0 for (g, p, y) in games_pitchers_years
