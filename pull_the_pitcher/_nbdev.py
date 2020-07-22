@@ -32,13 +32,19 @@ index = {"query_statcast": "00_data_acquisition.ipynb",
          "mean_pa_diff": "03_metrics.ipynb",
          "mean_target_diff": "03_metrics.ipynb",
          "preds_histogram": "03_metrics.ipynb",
-         "print_all_metrics": "03_metrics.ipynb"}
+         "print_all_metrics": "03_metrics.ipynb",
+         "get_starts": "05_utils.ipynb",
+         "front_pad": "05_utils.ipynb",
+         "PTPDataset": "05_utils.ipynb",
+         "save_model": "05_utils.ipynb",
+         "load_model": "05_utils.ipynb"}
 
 modules = ["data/acquisition.py",
            "data/processing.py",
            "data/pipeline.py",
            "metrics.py",
-           "inference.py"]
+           "inference.py",
+           "utils.py"]
 
 doc_url = "https://collinprather.github.io/pull-the-pitcher/"
 
