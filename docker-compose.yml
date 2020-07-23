@@ -16,21 +16,6 @@ services:
     env_file:
       - ./.env 
 
-  mlflow:
-    build:
-      context: .
-      dockerfile: Dockerfile-ml-dev
-    ports:
-      - "127.0.0.1::5000"
-    volumes:
-       - ./:/pull-the-pitcher
-    entrypoint: bash -c "mlflow server -h 0.0.0.0 --backend-store-uri ${MLFLOW_TRACKING_URI} --default-artifact-root ${MLFLOW_ARTIFACT_LOCATION:-'None'} -p 5000 && /bin/bash" 
-    stdin_open: true
-    container_name: "ptp_mlflow"
-    tty: true
-    env_file:
-      - ./.env 
-
   bash:
     build:
       context: .
