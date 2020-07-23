@@ -9,3 +9,4 @@ streamlit==0.6
 nbdev==0.2.18
 pull-the-pitcher
 drsa
+altair==4.1.0

@@ -27,17 +27,37 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Ensuring-pitcher-is-a-valid-starter">Ensuring pitcher is a valid starter<a class="anchor-link" href="#Ensuring-pitcher-is-a-valid-starter"> </a></h2>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">statcast</span><span class="p">(</span><span class="n">start_dt</span><span class="o">=</span><span class="s2">&quot;2019-07-19&quot;</span><span class="p">,</span> <span class="n">end_dt</span><span class="o">=</span><span class="s2">&quot;2019-07-19&quot;</span><span class="p">,</span> <span class="n">team</span><span class="o">=</span><span class="s2">&quot;BOS&quot;</span><span class="p">)</span>
-</pre></div>
+</div>
+    {% endraw %}
 
-    </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_game_df" class="doc_header"><code>get_game_df</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/inference.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_game_df</code>(<strong><code>db_path</code></strong>:<code>str</code>, <strong><code>year</code></strong>:<code>int</code>, <strong><code>game_pk</code></strong>:<code>int</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -51,7 +71,10 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example</span>
+
+<span class="n">game_df</span> <span class="o">=</span> <span class="n">get_game_df</span><span class="p">(</span><span class="n">db_path</span><span class="o">=</span><span class="s2">&quot;../data/raw/statcast_pitches.db&quot;</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="mi">2019</span><span class="p">,</span> <span class="n">game_pk</span><span class="o">=</span><span class="mi">565555</span><span class="p">)</span>
+<span class="n">game_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -83,6 +106,7 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>level_0</th>
       <th>index</th>
       <th>pitch_type</th>
       <th>game_date</th>
@@ -92,7 +116,6 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
       <th>player_name</th>
       <th>batter</th>
       <th>pitcher</th>
-      <th>events</th>
       <th>...</th>
       <th>home_score</th>
       <th>away_score</th>
@@ -109,272 +132,166 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
   <tbody>
     <tr>
       <th>0</th>
-      <td>278</td>
-      <td>CH</td>
-      <td>2019-07-19</td>
-      <td>93.2</td>
-      <td>-2.736589</td>
-      <td>5.134462</td>
-      <td>Miguel Castro</td>
-      <td>506702.0</td>
-      <td>612434.0</td>
-      <td>field_out</td>
+      <td>343378</td>
+      <td>4733</td>
+      <td>SL</td>
+      <td>2019-07-07 00:00:00</td>
+      <td>87.4</td>
+      <td>-2.179672</td>
+      <td>5.405451</td>
+      <td>Heath Hembree</td>
+      <td>622682.0</td>
+      <td>592390.0</td>
       <td>...</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
       <td>Standard</td>
       <td>Standard</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>279</td>
-      <td>CH</td>
-      <td>2019-07-19</td>
-      <td>93.2</td>
-      <td>-2.736589</td>
-      <td>5.134462</td>
-      <td>Miguel Castro</td>
-      <td>506702.0</td>
-      <td>612434.0</td>
-      <td>field_out</td>
+      <td>343379</td>
+      <td>4734</td>
+      <td>FF</td>
+      <td>2019-07-07 00:00:00</td>
+      <td>92.7</td>
+      <td>-2.310906</td>
+      <td>5.300275</td>
+      <td>Heath Hembree</td>
+      <td>622682.0</td>
+      <td>592390.0</td>
       <td>...</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
       <td>Standard</td>
       <td>Standard</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>287</td>
-      <td>SI</td>
-      <td>2019-07-19</td>
-      <td>98.2</td>
-      <td>-2.551423</td>
-      <td>5.182515</td>
-      <td>Miguel Castro</td>
-      <td>506702.0</td>
-      <td>612434.0</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>Standard</td>
-      <td>Standard</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>293</td>
-      <td>SI</td>
-      <td>2019-07-19</td>
-      <td>98.2</td>
-      <td>-2.551423</td>
-      <td>5.182515</td>
-      <td>Miguel Castro</td>
-      <td>506702.0</td>
-      <td>612434.0</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>Standard</td>
-      <td>Standard</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>299</td>
-      <td>SI</td>
-      <td>2019-07-19</td>
-      <td>98.4</td>
-      <td>-2.706001</td>
-      <td>5.235905</td>
-      <td>Miguel Castro</td>
-      <td>506702.0</td>
-      <td>612434.0</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>11.0</td>
-      <td>Standard</td>
-      <td>Standard</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>589</th>
-      <td>5463</td>
-      <td>CH</td>
-      <td>2019-07-19</td>
-      <td>78.7</td>
-      <td>1.216605</td>
-      <td>6.715734</td>
-      <td>John Means</td>
-      <td>605141.0</td>
-      <td>607644.0</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>Strategic</td>
-      <td>Standard</td>
-    </tr>
-    <tr>
-      <th>590</th>
-      <td>5468</td>
+      <td>343380</td>
+      <td>4738</td>
       <td>FF</td>
-      <td>2019-07-19</td>
-      <td>91.1</td>
-      <td>0.794684</td>
-      <td>6.771911</td>
-      <td>John Means</td>
-      <td>605141.0</td>
-      <td>607644.0</td>
-      <td>NaN</td>
+      <td>2019-07-07 00:00:00</td>
+      <td>93.1</td>
+      <td>-2.265012</td>
+      <td>5.288346</td>
+      <td>Heath Hembree</td>
+      <td>622682.0</td>
+      <td>592390.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>Strategic</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
       <td>Standard</td>
-    </tr>
-    <tr>
-      <th>591</th>
-      <td>5481</td>
-      <td>FF</td>
-      <td>2019-07-19</td>
-      <td>91.1</td>
-      <td>0.794684</td>
-      <td>6.771911</td>
-      <td>John Means</td>
-      <td>605141.0</td>
-      <td>607644.0</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>Strategic</td>
-      <td>Standard</td>
-    </tr>
-    <tr>
-      <th>592</th>
-      <td>5483</td>
-      <td>FF</td>
-      <td>2019-07-19</td>
-      <td>89.6</td>
-      <td>1.027430</td>
-      <td>6.768566</td>
-      <td>John Means</td>
-      <td>605141.0</td>
-      <td>607644.0</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>Strategic</td>
-      <td>Standard</td>
-    </tr>
-    <tr>
-      <th>593</th>
-      <td>5499</td>
-      <td>FF</td>
-      <td>2019-07-19</td>
-      <td>89.6</td>
-      <td>1.027430</td>
-      <td>6.768566</td>
-      <td>John Means</td>
-      <td>605141.0</td>
-      <td>607644.0</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>Strategic</td>
       <td>Standard</td>
     </tr>
   </tbody>
 </table>
-<p>594 rows × 90 columns</p>
+<p>3 rows × 91 columns</p>
 </div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="is_valid_starter" class="doc_header"><code>is_valid_starter</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/inference.py#L38" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>is_valid_starter</code>(<strong><code>db_path</code></strong>:<code>str</code>, <strong><code>year</code></strong>:<code>int</code>, <strong><code>game_pk</code></strong>:<code>int</code>, <strong><code>pitcher</code></strong>:<code>int</code>)</p>
+</blockquote>
+<p>df is the statcast data for a unique game_pk</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example</span>
+
+<span class="n">is_valid_starter</span><span class="p">(</span><span class="n">db_path</span><span class="o">=</span><span class="s2">&quot;../data/raw/statcast_pitches.db&quot;</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="mi">2019</span><span class="p">,</span> <span class="n">game_pk</span><span class="o">=</span><span class="mi">565367</span><span class="p">,</span> <span class="n">pitcher</span><span class="o">=</span><span class="mi">596001</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/usr/local/lib/python3.7/dist-packages/pandas/core/indexing.py:845: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[key] = _infer_fill_value(value)
+/usr/local/lib/python3.7/dist-packages/pandas/core/indexing.py:966: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[item] = s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
 </div>
 
 </div>
@@ -387,14 +304,72 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Plan">Plan<a class="anchor-link" href="#Plan"> </a></h3><ol>
-<li>make sure it is not an opener or NL team</li>
-<li></li>
-</ol>
+<h2 id="Transforming-game_df-into-torch.tensor-to-feed-into-DRSA">Transforming <code>game_df</code> into <code>torch.tensor</code> to feed into DRSA<a class="anchor-link" href="#Transforming-game_df-into-torch.tensor-to-feed-into-DRSA"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="test_front_pad" class="doc_header"><code>test_front_pad</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/inference.py#L87" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>test_front_pad</code>(<strong><code>feature_engineered_df</code></strong>:<code>DataFrame</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
 
 </div>
 </div>
+
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="game_df2tensor" class="doc_header"><code>game_df2tensor</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/inference.py#L96" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>game_df2tensor</code>(<strong><code>game_df</code></strong>:<code>DataFrame</code>, <strong><code>game_pk</code></strong>:<code>int</code>, <strong><code>pitcher</code></strong>:<code>int</code>, <strong><code>mappers</code></strong>, <strong><code>scaler</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -402,49 +377,91 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pull_the_pitcher.data.processing</span> <span class="kn">import</span> <span class="n">add_pitcher_team</span><span class="p">,</span> <span class="n">add_postouts</span><span class="p">,</span> <span class="n">outs_per_inning</span><span class="p">,</span> <span class="n">batters_faced</span><span class="p">,</span> <span class="n">AL_teams</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example of how game_df2tensor works</span>
 
+<span class="c1"># constants</span>
+<span class="n">db_path</span> <span class="o">=</span> <span class="s2">&quot;../data/raw/statcast_pitches.db&quot;</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2019</span>
+<span class="c1"># game_pk = 565761.0  # 2019-08-14 @ STL</span>
+<span class="n">game_pk</span> <span class="o">=</span> <span class="mf">565717.0</span>    <span class="c1"># 2019-05-11 @ TB</span>
+<span class="n">pitcher</span> <span class="o">=</span> <span class="mf">641745.0</span>  <span class="c1"># Brad Keller</span>
+<span class="n">mappers_path</span> <span class="o">=</span> <span class="s2">&quot;../data/processed/mappers_2017_2018_2016_2019.pkl&quot;</span>
+<span class="n">scaler_path</span> <span class="o">=</span> <span class="s2">&quot;../data/processed/scaler_2017_2018_2016_2019.pkl&quot;</span>
 
-<span class="k">def</span> <span class="nf">has_opener</span><span class="p">(</span><span class="n">game_df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    df is the statcast data for a unique game_pk</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># getting sorted (by at bat) df for a specific game</span>
-    <span class="n">game_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;at_bat_number&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># loading embedding encoder and scaler</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/processed/mappers_2017_2018_2016_2019.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">mappers</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/processed/scaler_2017_2018_2016_2019.pkl&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    
+<span class="n">game_df</span> <span class="o">=</span> <span class="n">get_game_df</span><span class="p">(</span><span class="n">db_path</span><span class="o">=</span><span class="n">db_path</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> <span class="n">game_pk</span><span class="o">=</span><span class="n">game_pk</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">pad_diff</span> <span class="o">=</span> <span class="n">game_df2tensor</span><span class="p">(</span><span class="n">game_df</span><span class="p">,</span> <span class="n">game_pk</span><span class="p">,</span> <span class="n">pitcher</span><span class="p">,</span> <span class="n">mappers</span><span class="p">,</span> <span class="n">scaler</span><span class="p">)</span>
 
-    <span class="c1"># first pitcher for each team is throwing at min(at_bat_number)</span>
-    <span class="n">home_pitcher_first_ab</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">game_df</span><span class="p">[</span><span class="s2">&quot;inning_topbot&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Top&quot;</span><span class="p">),</span> <span class="s2">&quot;at_bat_number&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-    <span class="n">home_team</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="s2">&quot;home_team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-    <span class="n">home_pitcher</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">game_df</span><span class="p">[</span><span class="s2">&quot;at_bat_number&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">home_pitcher_first_ab</span><span class="p">),</span> <span class="s2">&quot;pitcher&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-
-    <span class="n">away_pitcher_first_ab</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">game_df</span><span class="p">[</span><span class="s2">&quot;inning_topbot&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Bot&quot;</span><span class="p">,</span> <span class="s2">&quot;at_bat_number&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-    <span class="n">away_team</span> <span class="o">=</span> <span class="n">game_df</span><span class="p">[</span><span class="s2">&quot;away_team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-    <span class="n">away_pitcher</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">game_df</span><span class="p">[</span><span class="s2">&quot;at_bat_number&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">away_pitcher_first_ab</span><span class="p">),</span> <span class="s2">&quot;pitcher&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-
-    <span class="c1"># adding pitcher_team</span>
-    <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;pitcher_team&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">add_pitcher_team</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1"># check if either are &quot;openers&quot;</span>
-    <span class="k">for</span> <span class="n">pitcher</span><span class="p">,</span> <span class="n">team</span> <span class="ow">in</span> <span class="p">((</span><span class="n">home_pitcher</span><span class="p">,</span> <span class="n">home_team</span><span class="p">),</span> <span class="p">(</span><span class="n">away_pitcher</span><span class="p">,</span> <span class="n">away_team</span><span class="p">)):</span>
-
-        <span class="c1"># adding postouts for entire game for a single team</span>
-        <span class="n">game_team_df</span> <span class="o">=</span> <span class="n">game_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">game_df</span><span class="p">[</span><span class="s2">&quot;pitcher_team&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">team</span><span class="p">)]</span>
-        <span class="n">game_team_df</span> <span class="o">=</span> <span class="n">add_postouts</span><span class="p">(</span><span class="n">game_team_df</span><span class="p">)</span>
-
-        <span class="c1"># subsetting to get pitches thrown by the starter</span>
-        <span class="n">game_team_pitcher_df</span> <span class="o">=</span> <span class="n">game_team_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">game_team_df</span><span class="p">[</span><span class="s2">&quot;pitcher&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">pitcher</span><span class="p">)]</span>
-
-        <span class="c1"># getting criteria to check if opener</span>
-        <span class="n">outs</span> <span class="o">=</span> <span class="n">game_team_pitcher_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;inning&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;postouts&quot;</span><span class="p">:</span> <span class="n">outs_per_inning</span><span class="p">})</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-        <span class="n">n_batters</span> <span class="o">=</span> <span class="n">batters_faced</span><span class="p">(</span><span class="n">game_team_pitcher_df</span><span class="p">[</span><span class="s2">&quot;at_bat_number&quot;</span><span class="p">])</span>
-        <span class="n">opener</span> <span class="o">=</span> <span class="n">outs</span> <span class="o">&lt;</span> <span class="mi">7</span> <span class="ow">or</span> <span class="n">n_batters</span> <span class="o">&lt;</span> <span class="mi">10</span>
-
-        <span class="c1"># must not be opener, be from an AL team, and be playing in an AL stadium</span>
-        <span class="k">if</span> <span class="n">opener</span> <span class="ow">and</span> <span class="p">(</span><span class="n">team</span> <span class="ow">in</span> <span class="n">AL_teams</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">home_team</span> <span class="ow">in</span> <span class="n">AL_teams</span><span class="p">):</span>
-            <span class="n">games_pitchers_years</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">game</span><span class="p">,</span> <span class="n">pitcher</span><span class="p">,</span> <span class="n">year</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/usr/local/lib/python3.7/dist-packages/pandas/core/indexing.py:845: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[key] = _infer_fill_value(value)
+/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:205: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  game_team_pitcher_df[&#34;events&#34;] = game_team_pitcher_df[&#34;events&#34;].fillna(&#34;&#34;)
+/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:208: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  game_team_pitcher_df[&#34;post_bat_score&#34;] = game_team_pitcher_df[&#34;post_bat_score&#34;].shift(-1).fillna(method=&#34;ffill&#34;)
+/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:212: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  game_team_pitcher_df[f&#34;post_on_{base}b&#34;] = game_team_pitcher_df[f&#34;on_{base}b&#34;].fillna(0).apply(lambda x: 1 if x&gt;0 else 0).shift(-1).fillna(method=&#34;ffill&#34;)
+/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:215: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  game_team_pitcher_df[&#34;post_opposite_hand&#34;] = (game_team_pitcher_df[&#34;stand&#34;]!=game_team_pitcher_df[&#34;p_throws&#34;]).astype(int).shift(-1).fillna(method=&#34;ffill&#34;)
+/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:11: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  # This is added back by InteractiveShellApp.init_path()
+/usr/local/lib/python3.7/dist-packages/pandas/core/indexing.py:966: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self.obj[item] = s
+/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:14: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -453,22 +470,35 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
+<h2 id="Loading-DRSA-model">Loading DRSA model<a class="anchor-link" href="#Loading-DRSA-model"> </a></h2>
 </div>
 </div>
 </div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;player_name&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;David Price&quot;</span><span class="p">)]</span>
-</pre></div>
+</div>
+    {% endraw %}
 
-    </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="load_drsa" class="doc_header"><code>load_drsa</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/inference.py#L119" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_drsa</code>()</p>
+</blockquote>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -482,7 +512,117 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;game_date&quot;</span><span class="p">,</span> <span class="s2">&quot;player_name&quot;</span><span class="p">,</span> <span class="s2">&quot;pitch_type&quot;</span><span class="p">,</span> <span class="s2">&quot;release_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="s2">&quot;at_bat_number&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;at_bat_number&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">30</span><span class="p">,</span> <span class="p">:]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example of how inference would work</span>
+
+<span class="n">drsa</span> <span class="o">=</span> <span class="n">load_drsa</span><span class="p">()</span>
+<span class="n">drsa</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="c1"># making sure that no dropout is applied</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">drsa</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[[0.0865],
+         [0.0189],
+         [0.0126],
+         [0.0114],
+         [0.0111],
+         [0.0110],
+         [0.0110],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0109],
+         [0.0110],
+         [0.0110],
+         [0.0110],
+         [0.0111],
+         [0.0112],
+         [0.0114],
+         [0.0117],
+         [0.0123],
+         [0.0134],
+         [0.0155],
+         [0.0200],
+         [0.0310],
+         [0.0636],
+         [0.1699],
+         [0.3756]]], grad_fn=&lt;SigmoidBackward&gt;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Simple-Visualization">Simple Visualization<a class="anchor-link" href="#Simple-Visualization"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="make_altair_hist" class="doc_header"><code>make_altair_hist</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/inference.py#L142" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>make_altair_hist</code>(<strong><code>preds</code></strong>:<code>tensor</code>, <strong><code>diff</code></strong>:<code>int</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example visualization</span>
+
+<span class="n">make_altair_hist</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">pad_diff</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -496,319 +636,62 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
+
+<div id="altair-viz-ee4e5a88f40d4ae8b3774ea89815dd81"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-ee4e5a88f40d4ae8b3774ea89815dd81") {
+      outputDiv = document.getElementById("altair-viz-ee4e5a88f40d4ae8b3774ea89815dd81");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
     }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
     }
 
-    .dataframe thead th {
-        text-align: right;
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
     }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>game_date</th>
-      <th>player_name</th>
-      <th>pitch_type</th>
-      <th>release_speed</th>
-      <th>events</th>
-      <th>at_bat_number</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>551</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FF</td>
-      <td>88.5</td>
-      <td>NaN</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>544</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FF</td>
-      <td>90.4</td>
-      <td>field_out</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>545</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FF</td>
-      <td>90.4</td>
-      <td>field_out</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>546</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FF</td>
-      <td>89.8</td>
-      <td>NaN</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>550</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FF</td>
-      <td>88.5</td>
-      <td>NaN</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>548</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>CH</td>
-      <td>80.7</td>
-      <td>NaN</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>547</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FF</td>
-      <td>89.8</td>
-      <td>NaN</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>549</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>CH</td>
-      <td>80.7</td>
-      <td>NaN</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>543</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FC</td>
-      <td>87.3</td>
-      <td>single</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>542</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FC</td>
-      <td>87.3</td>
-      <td>single</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>541</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FC</td>
-      <td>88.5</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>540</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FC</td>
-      <td>88.5</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>539</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>CH</td>
-      <td>80.6</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>538</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>CH</td>
-      <td>80.6</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>537</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FT</td>
-      <td>91.5</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>536</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FT</td>
-      <td>91.5</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>534</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FF</td>
-      <td>91.2</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>533</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FC</td>
-      <td>88.5</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>532</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FC</td>
-      <td>88.5</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>531</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>CH</td>
-      <td>82.9</td>
-      <td>walk</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>530</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>CH</td>
-      <td>82.9</td>
-      <td>walk</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>535</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FF</td>
-      <td>91.2</td>
-      <td>NaN</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>523</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FT</td>
-      <td>91.5</td>
-      <td>field_out</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>522</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FT</td>
-      <td>91.5</td>
-      <td>field_out</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>524</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FT</td>
-      <td>91.3</td>
-      <td>NaN</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>525</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FT</td>
-      <td>91.3</td>
-      <td>NaN</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>527</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>CH</td>
-      <td>82.2</td>
-      <td>NaN</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>528</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FT</td>
-      <td>90.0</td>
-      <td>NaN</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>529</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>FT</td>
-      <td>90.0</td>
-      <td>NaN</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>526</th>
-      <td>2019-07-19</td>
-      <td>David Price</td>
-      <td>CH</td>
-      <td>82.2</td>
-      <td>NaN</td>
-      <td>8.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-96e944159a8424fbe2c94aa686b179a8"}, "mark": "bar", "encoding": {"color": {"type": "nominal", "field": "prediction", "scale": {"domain": ["stayed", "pulled"], "range": ["lightgrey", "lightblue"]}}, "tooltip": [{"type": "quantitative", "field": "pred", "format": ".4%"}, {"type": "ordinal", "field": "at_bat_num"}], "x": {"type": "quantitative", "field": "pred"}, "y": {"type": "ordinal", "field": "at_bat_num"}}, "selection": {"selector032": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-96e944159a8424fbe2c94aa686b179a8": [{"at_bat_num": 1, "pred": 0.010907234624028206, "prediction": "stayed"}, {"at_bat_num": 2, "pred": 0.010906261391937733, "prediction": "stayed"}, {"at_bat_num": 3, "pred": 0.01090594194829464, "prediction": "stayed"}, {"at_bat_num": 4, "pred": 0.01090630330145359, "prediction": "stayed"}, {"at_bat_num": 5, "pred": 0.01090700738132, "prediction": "stayed"}, {"at_bat_num": 6, "pred": 0.010910614393651485, "prediction": "stayed"}, {"at_bat_num": 7, "pred": 0.010915524326264858, "prediction": "stayed"}, {"at_bat_num": 8, "pred": 0.01092306338250637, "prediction": "stayed"}, {"at_bat_num": 9, "pred": 0.010934815742075443, "prediction": "stayed"}, {"at_bat_num": 10, "pred": 0.010953634046018124, "prediction": "stayed"}, {"at_bat_num": 11, "pred": 0.010985026136040688, "prediction": "stayed"}, {"at_bat_num": 12, "pred": 0.011036921292543411, "prediction": "stayed"}, {"at_bat_num": 13, "pred": 0.011116890236735344, "prediction": "stayed"}, {"at_bat_num": 14, "pred": 0.011230584233999252, "prediction": "stayed"}, {"at_bat_num": 15, "pred": 0.011404971592128277, "prediction": "stayed"}, {"at_bat_num": 16, "pred": 0.011702215299010277, "prediction": "stayed"}, {"at_bat_num": 17, "pred": 0.012298405170440674, "prediction": "stayed"}, {"at_bat_num": 18, "pred": 0.013407002203166485, "prediction": "stayed"}, {"at_bat_num": 19, "pred": 0.015520273707807064, "prediction": "stayed"}, {"at_bat_num": 20, "pred": 0.019967807456851006, "prediction": "stayed"}, {"at_bat_num": 21, "pred": 0.030984370037913322, "prediction": "stayed"}, {"at_bat_num": 22, "pred": 0.0636393129825592, "prediction": "stayed"}, {"at_bat_num": 23, "pred": 0.16987454891204834, "prediction": "stayed"}, {"at_bat_num": 24, "pred": 0.3755587637424469, "prediction": "pulled"}]}}, {"mode": "vega-lite"});
+</script>
 </div>
 
 </div>
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}

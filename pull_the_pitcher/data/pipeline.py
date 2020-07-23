@@ -203,16 +203,12 @@ def prep_data_for_modeling(
         agged_df = processing.aggregate_at_bats(cleaned_df, at_bat_aggs)
         feature_engineered_df = processing.feature_engineering(agged_df)
 
-#         # making sure starting pitcher is in AL -> this _should_ no longer be necessary
-#         if feature_engineered_df.shape[0] > 0:
         if ds_flag == 2:
             test_starts.append(feature_engineered_df[cols])
         elif ds_flag == 1:
             val_starts.append(feature_engineered_df[cols])
         else:
             train_starts.append(feature_engineered_df[cols])
-#         else:
-#             print("empty df")
 
     # adding binary targets (pitcher always removed in last at-bat)
     train_starts = add_targets(train_starts)
@@ -236,14 +232,10 @@ def prep_data_for_modeling(
     val.to_csv(f"{output_path}/val_{'_'.join(train_year)}.csv", index=False)
     test.to_csv(f"{output_path}/test_{'_'.join(test_year)}.csv", index=False)
 
-    with open(
-        f"{output_path}/mappers_{'_'.join(train_year + test_year)}.pkl", "wb"
-    ) as f:
+    with open(f"{output_path}/mappers_{'_'.join(train_year + test_year)}.pkl", "wb") as f:
         pickle.dump(mappers, f)
 
-    with open(
-        f"{output_path}/scaler_{'_'.join(train_year + test_year)}.pkl", "wb"
-    ) as f:
+    with open(f"{output_path}/scaler_{'_'.join(train_year + test_year)}.pkl", "wb") as f:
         pickle.dump(scaler, f)
 
     if verbose:

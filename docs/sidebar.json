@@ -5,6 +5,7 @@
     "Data Processing": "/data_processing",
     "Data Pipeline": "/data_pipeline",
     "Metrics": "/metrics",
-    "Inference": "/inference"
+    "Inference": "/inference",
+    "Utilities": "/utils"
   }
 }
