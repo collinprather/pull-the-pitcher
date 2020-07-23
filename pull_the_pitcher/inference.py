@@ -116,7 +116,7 @@ def game_df2tensor(game_df: pd.DataFrame, game_pk: int, pitcher: int, mappers, s
 
 # Cell
 
-def load_drsa():
+def load_drsa(model_path):
     # model hyperparameters
     n_pitchers = 270
     pitcher_emb_size = 20
@@ -133,7 +133,7 @@ def load_drsa():
                 Linear_dropout=0.1)
 
     # loading up saved model
-    load_model(drsa, f"../models/07-22-20_DRSA_2016_2017_2018_2019_loss_4.0985.pth")
+    load_model(drsa, model_path)
 
     return drsa
 

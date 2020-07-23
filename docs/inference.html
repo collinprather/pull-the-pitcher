@@ -270,13 +270,13 @@ description: "Utilites to make an inference (prediction) on an arbitrary pitcher
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/local/lib/python3.7/dist-packages/pandas/core/indexing.py:845: SettingWithCopyWarning: 
+<pre>/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/pandas/core/indexing.py:845: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   self.obj[key] = _infer_fill_value(value)
-/usr/local/lib/python3.7/dist-packages/pandas/core/indexing.py:966: SettingWithCopyWarning: 
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/pandas/core/indexing.py:966: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -410,49 +410,43 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/local/lib/python3.7/dist-packages/pandas/core/indexing.py:845: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  self.obj[key] = _infer_fill_value(value)
-/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:205: SettingWithCopyWarning: 
+<pre>/Users/collinprather/Documents/Baltimore-Orioles/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:205: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   game_team_pitcher_df[&#34;events&#34;] = game_team_pitcher_df[&#34;events&#34;].fillna(&#34;&#34;)
-/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:208: SettingWithCopyWarning: 
+/Users/collinprather/Documents/Baltimore-Orioles/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:208: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   game_team_pitcher_df[&#34;post_bat_score&#34;] = game_team_pitcher_df[&#34;post_bat_score&#34;].shift(-1).fillna(method=&#34;ffill&#34;)
-/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:212: SettingWithCopyWarning: 
+/Users/collinprather/Documents/Baltimore-Orioles/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:212: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   game_team_pitcher_df[f&#34;post_on_{base}b&#34;] = game_team_pitcher_df[f&#34;on_{base}b&#34;].fillna(0).apply(lambda x: 1 if x&gt;0 else 0).shift(-1).fillna(method=&#34;ffill&#34;)
-/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:215: SettingWithCopyWarning: 
+/Users/collinprather/Documents/Baltimore-Orioles/pull-the-pitcher/notebooks/pull_the_pitcher/data/processing.py:215: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   game_team_pitcher_df[&#34;post_opposite_hand&#34;] = (game_team_pitcher_df[&#34;stand&#34;]!=game_team_pitcher_df[&#34;p_throws&#34;]).astype(int).shift(-1).fillna(method=&#34;ffill&#34;)
-/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:11: SettingWithCopyWarning: 
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:11: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   # This is added back by InteractiveShellApp.init_path()
-/usr/local/lib/python3.7/dist-packages/pandas/core/indexing.py:966: SettingWithCopyWarning: 
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/pandas/core/indexing.py:966: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   self.obj[item] = s
-/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:14: SettingWithCopyWarning: 
+/Users/collinprather/anaconda3/envs/orioles/lib/python3.7/site-packages/ipykernel_launcher.py:14: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -492,7 +486,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_drsa" class="doc_header"><code>load_drsa</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/inference.py#L119" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_drsa</code>()</p>
+<h4 id="load_drsa" class="doc_header"><code>load_drsa</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/inference.py#L119" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_drsa</code>(<strong><code>model_path</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -514,7 +508,8 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># example of how inference would work</span>
 
-<span class="n">drsa</span> <span class="o">=</span> <span class="n">load_drsa</span><span class="p">()</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;../models/07-22-20_DRSA_2016_2017_2018_2019_loss_4.0985.pth&quot;</span>
+<span class="n">drsa</span> <span class="o">=</span> <span class="n">load_drsa</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
 <span class="n">drsa</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="c1"># making sure that no dropout is applied</span>
 <span class="n">preds</span> <span class="o">=</span> <span class="n">drsa</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
@@ -637,12 +632,12 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
-<div id="altair-viz-ee4e5a88f40d4ae8b3774ea89815dd81"></div>
+<div id="altair-viz-48c38b535a41493eb839b8d072085475"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ee4e5a88f40d4ae8b3774ea89815dd81") {
-      outputDiv = document.getElementById("altair-viz-ee4e5a88f40d4ae8b3774ea89815dd81");
+    if (outputDiv.id !== "altair-viz-48c38b535a41493eb839b8d072085475") {
+      outputDiv = document.getElementById("altair-viz-48c38b535a41493eb839b8d072085475");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -684,7 +679,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-96e944159a8424fbe2c94aa686b179a8"}, "mark": "bar", "encoding": {"color": {"type": "nominal", "field": "prediction", "scale": {"domain": ["stayed", "pulled"], "range": ["lightgrey", "lightblue"]}}, "tooltip": [{"type": "quantitative", "field": "pred", "format": ".4%"}, {"type": "ordinal", "field": "at_bat_num"}], "x": {"type": "quantitative", "field": "pred"}, "y": {"type": "ordinal", "field": "at_bat_num"}}, "selection": {"selector032": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-96e944159a8424fbe2c94aa686b179a8": [{"at_bat_num": 1, "pred": 0.010907234624028206, "prediction": "stayed"}, {"at_bat_num": 2, "pred": 0.010906261391937733, "prediction": "stayed"}, {"at_bat_num": 3, "pred": 0.01090594194829464, "prediction": "stayed"}, {"at_bat_num": 4, "pred": 0.01090630330145359, "prediction": "stayed"}, {"at_bat_num": 5, "pred": 0.01090700738132, "prediction": "stayed"}, {"at_bat_num": 6, "pred": 0.010910614393651485, "prediction": "stayed"}, {"at_bat_num": 7, "pred": 0.010915524326264858, "prediction": "stayed"}, {"at_bat_num": 8, "pred": 0.01092306338250637, "prediction": "stayed"}, {"at_bat_num": 9, "pred": 0.010934815742075443, "prediction": "stayed"}, {"at_bat_num": 10, "pred": 0.010953634046018124, "prediction": "stayed"}, {"at_bat_num": 11, "pred": 0.010985026136040688, "prediction": "stayed"}, {"at_bat_num": 12, "pred": 0.011036921292543411, "prediction": "stayed"}, {"at_bat_num": 13, "pred": 0.011116890236735344, "prediction": "stayed"}, {"at_bat_num": 14, "pred": 0.011230584233999252, "prediction": "stayed"}, {"at_bat_num": 15, "pred": 0.011404971592128277, "prediction": "stayed"}, {"at_bat_num": 16, "pred": 0.011702215299010277, "prediction": "stayed"}, {"at_bat_num": 17, "pred": 0.012298405170440674, "prediction": "stayed"}, {"at_bat_num": 18, "pred": 0.013407002203166485, "prediction": "stayed"}, {"at_bat_num": 19, "pred": 0.015520273707807064, "prediction": "stayed"}, {"at_bat_num": 20, "pred": 0.019967807456851006, "prediction": "stayed"}, {"at_bat_num": 21, "pred": 0.030984370037913322, "prediction": "stayed"}, {"at_bat_num": 22, "pred": 0.0636393129825592, "prediction": "stayed"}, {"at_bat_num": 23, "pred": 0.16987454891204834, "prediction": "stayed"}, {"at_bat_num": 24, "pred": 0.3755587637424469, "prediction": "pulled"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-63f063b3de9d33b7ecb18a74268914a5"}, "mark": "bar", "encoding": {"color": {"type": "nominal", "field": "prediction", "scale": {"domain": ["stayed", "pulled"], "range": ["lightgrey", "lightblue"]}}, "tooltip": [{"type": "quantitative", "field": "pred", "format": ".4%"}, {"type": "ordinal", "field": "at_bat_num"}], "x": {"type": "quantitative", "field": "pred"}, "y": {"type": "ordinal", "field": "at_bat_num"}}, "selection": {"selector001": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-63f063b3de9d33b7ecb18a74268914a5": [{"at_bat_num": 1, "pred": 0.010907234624028206, "prediction": "stayed"}, {"at_bat_num": 2, "pred": 0.010906261391937733, "prediction": "stayed"}, {"at_bat_num": 3, "pred": 0.01090594194829464, "prediction": "stayed"}, {"at_bat_num": 4, "pred": 0.01090630330145359, "prediction": "stayed"}, {"at_bat_num": 5, "pred": 0.01090700738132, "prediction": "stayed"}, {"at_bat_num": 6, "pred": 0.010910614393651485, "prediction": "stayed"}, {"at_bat_num": 7, "pred": 0.010915524326264858, "prediction": "stayed"}, {"at_bat_num": 8, "pred": 0.01092306338250637, "prediction": "stayed"}, {"at_bat_num": 9, "pred": 0.010934815742075443, "prediction": "stayed"}, {"at_bat_num": 10, "pred": 0.010953634046018124, "prediction": "stayed"}, {"at_bat_num": 11, "pred": 0.010985026136040688, "prediction": "stayed"}, {"at_bat_num": 12, "pred": 0.011036921292543411, "prediction": "stayed"}, {"at_bat_num": 13, "pred": 0.011116890236735344, "prediction": "stayed"}, {"at_bat_num": 14, "pred": 0.011230584233999252, "prediction": "stayed"}, {"at_bat_num": 15, "pred": 0.011404971592128277, "prediction": "stayed"}, {"at_bat_num": 16, "pred": 0.011702215299010277, "prediction": "stayed"}, {"at_bat_num": 17, "pred": 0.012298405170440674, "prediction": "stayed"}, {"at_bat_num": 18, "pred": 0.013407002203166485, "prediction": "stayed"}, {"at_bat_num": 19, "pred": 0.015520273707807064, "prediction": "stayed"}, {"at_bat_num": 20, "pred": 0.019967807456851006, "prediction": "stayed"}, {"at_bat_num": 21, "pred": 0.03098437748849392, "prediction": "stayed"}, {"at_bat_num": 22, "pred": 0.0636393278837204, "prediction": "stayed"}, {"at_bat_num": 23, "pred": 0.16987456381320953, "prediction": "stayed"}, {"at_bat_num": 24, "pred": 0.3755587637424469, "prediction": "pulled"}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 

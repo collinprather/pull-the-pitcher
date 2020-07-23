@@ -1,6 +1,4 @@
-# raw sqlite db files
-*.db
 
-./data/*
+./data/raw/statcast_pitches.sql
+./data/processed/*.csv
 
-.env
