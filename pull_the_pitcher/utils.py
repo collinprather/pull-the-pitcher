@@ -61,7 +61,7 @@ class PTPDataset(Dataset):
 
     def __getitem__(self, idx):
         # ignoring first col, which is game_pk (unique identifier for each game)
-        X = torch.tensor(self.starts[idx][:, :-1].astype(float), dtype=torch.double)
+        X = torch.tensor(self.starts[idx][:, 1:-1].astype(float), dtype=torch.double)
         y = torch.tensor(self.starts[idx][:, -1], dtype=torch.double).unsqueeze(-1)
         return X, y
 
