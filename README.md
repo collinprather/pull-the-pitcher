@@ -4,7 +4,7 @@
 
 #### [Documentation](https://collinprather.github.io/pull-the-pitcher/)
 
-> Predicting when MLB managers in the AL will pull their starting pitchers. This [Deep, Recurrent Survival Analysis](https://github.com/collinprather/drsa) model is trained to predict the at-bat at which a pitcher is removed from the game, earning an F1-score of 0.97.
+> Predicting when MLB managers in the AL will pull their starting pitchers. This [Deep, Recurrent Survival Analysis](https://github.com/collinprather/drsa) model is trained to predict the at-bat at which a pitcher is removed from the game, earning an F1-score of 0.85.
 
 ![performance](notebooks/images/drsa_performance.png)
 
