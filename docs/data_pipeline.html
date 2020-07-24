@@ -51,6 +51,13 @@ description: "Command-line script, which utilizes the `data_processing` module"
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -58,7 +65,7 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="add_targets" class="doc_header"><code>add_targets</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L29" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>add_targets</code>(<strong><code>starts</code></strong>:<code>List</code>[<code>T</code>])</p>
+<h4 id="add_targets" class="doc_header"><code>add_targets</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L51" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>add_targets</code>(<strong><code>starts</code></strong>:<code>List</code>[<code>T</code>])</p>
 </blockquote>
 <p>adding target as last col to each start</p>
 
@@ -90,7 +97,7 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="stack_into_df" class="doc_header"><code>stack_into_df</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L39" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>stack_into_df</code>(<strong><code>starts</code></strong>:<code>List</code>[<code>T</code>])</p>
+<h4 id="stack_into_df" class="doc_header"><code>stack_into_df</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L61" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>stack_into_df</code>(<strong><code>starts</code></strong>:<code>List</code>[<code>T</code>])</p>
 </blockquote>
 
 </div>
@@ -121,7 +128,7 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="scale" class="doc_header"><code>scale</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L50" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>scale</code>(<strong><code>train</code></strong>:<code>DataFrame</code>, <strong><code>val</code></strong>:<code>DataFrame</code>)</p>
+<h4 id="scale" class="doc_header"><code>scale</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L72" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>scale</code>(<strong><code>train</code></strong>:<code>DataFrame</code>, <strong><code>val</code></strong>:<code>DataFrame</code>)</p>
 </blockquote>
 
 </div>
@@ -152,7 +159,7 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="encode_col" class="doc_header"><code>encode_col</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>encode_col</code>(<strong><code>train</code></strong>, <strong><code>valid</code></strong>, <strong><code>col</code></strong>=<em><code>'pitcher_id'</code></em>)</p>
+<h4 id="encode_col" class="doc_header"><code>encode_col</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>encode_col</code>(<strong><code>train</code></strong>, <strong><code>valid</code></strong>, <strong><code>col</code></strong>=<em><code>'pitcher_id'</code></em>)</p>
 </blockquote>
 
 </div>
@@ -176,7 +183,7 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="encode_embedding_cols" class="doc_header"><code>encode_embedding_cols</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L79" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>encode_embedding_cols</code>(<strong><code>train</code></strong>, <strong><code>val</code></strong>, <strong><code>cols</code></strong>=<em><code>['game_pk', 'game_type', 'pitcher', 'pitcher_team_year']</code></em>)</p>
+<h4 id="encode_embedding_cols" class="doc_header"><code>encode_embedding_cols</code><a href="https://github.com/collinprather/pull_the_pitcher/tree/master/pull_the_pitcher/data/pipeline.py#L101" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>encode_embedding_cols</code>(<strong><code>train</code></strong>, <strong><code>val</code></strong>, <strong><code>cols</code></strong>=<em><code>['game_pk', 'game_type', 'pitcher', 'pitcher_team_year']</code></em>)</p>
 </blockquote>
 
 </div>
@@ -185,13 +192,6 @@ description: "Command-line script, which utilizes the `data_processing` module"
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}

@@ -14,21 +14,13 @@ from os import path
 
 @call_parse
 def query_statcast(
-    start_dt: Param(help="Beginning date to pull data from", type=str) = None,
-    end_dt: Param(help="End date to pull data from", type=str) = None,
-    team: Param(help="Abbreviation for team of interest", type=str) = None,
-    verbose: Param(
-        help="Whether or not to print verbose updates", type=bool_arg
-    ) = True,
-    output_type: Param(help="What format to save data in", type=str) = "db",
-    overwrite: Param(
-        help="Whether or not to overwrite the db table if it already exists",
-        type=bool_arg,
-    ) = False,
-    output_path: Param(
-        help="path to location that data should be saved", type=str
-    ) = ".",
-):
+        start_dt: Param(help="Beginning date to pull data from", type=str) = None,
+        end_dt: Param(help="End date to pull data from", type=str) = None,
+        team: Param(help="Abbreviation for team of interest", type=str) = None,
+        verbose: Param(help="Whether or not to print verbose updates", type=bool_arg) = True,
+        output_type: Param(help="What format to save data in", type=str) = "db",
+        overwrite: Param(help="Whether or not to overwrite the db table if it already exists", type=bool_arg,) = False,
+        output_path: Param(help="path to location that data should be saved", type=str) = "."):
     """
     Callable from the command-line or in Python. Pulls pitch-level MLB data from [statcast](https://baseballsavant.mlb.com/statcast_search).
     Saves as either a sqlite db file, or csv.
